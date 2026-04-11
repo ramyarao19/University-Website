@@ -148,8 +148,8 @@ function markAllRead(btn) {
   updateNotifBadges();
 }
 
-function updateNotifBadges() {
-  const count = DB.getUnreadCount();
+async function updateNotifBadges() {
+  const count = await DB.getUnreadCount();
   document.querySelectorAll('.notif-badge').forEach(badge => {
     badge.style.display = count > 0 ? 'block' : 'none';
   });

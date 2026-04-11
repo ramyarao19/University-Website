@@ -31,29 +31,27 @@
     });
   }
 
-  // 5. Update notification badges
-  updateNotifBadges();
-
-  // 6. Wire up the portal dashboard with live data from DB
-  refreshPortalData();
-
-  // 7. Navigate to correct page
+  // 5. Navigate to correct page FIRST so the user sees content immediately
   const initialPage = location.hash.replace('#', '') || 'home';
   navigate(initialPage);
+
+  // 6. Then update dynamic data (non-blocking)
+  try { await updateNotifBadges(); } catch(e) { console.warn('Notif badges:', e); }
+  try { await refreshPortalData(); } catch(e) { console.warn('Portal data:', e); }
 
   console.log('%c The Scholarly Editorial — Site Loaded ', 'background:#000a1e;color:#fff;padding:4px 12px;border-radius:4px;font-family:serif;');
   console.log('Mock DB ready. Use DB.dump() to inspect data, DB.reset() to reseed.');
 })();
 
 /* ── Refresh portal dashboard from DB ─────────────────── */
-function refreshPortalData() {
+async function refreshPortalData() {
   // Update balance
-  const balance = DB.getOutstandingBalance();
+  const balance = await DB.getOutstandingBalance();
   const balanceEl = document.querySelector('#page-portal .billing-balance');
   if (balanceEl) balanceEl.textContent = `$${balance.toFixed(2)}`;
 
   // Update fee items
-  const fees = DB.getFees().filter(f => f.status !== 'paid');
+  const fees = (await DB.getFees()).filter(f => f.status !== 'paid');
   const feeItemsEl = document.querySelector('#page-portal .billing-items');
   if (feeItemsEl && fees.length > 0) {
     feeItemsEl.innerHTML = fees.map(f => `
@@ -65,12 +63,12 @@ function refreshPortalData() {
   }
 
   // Update student info
-  const student = DB.getStudent();
+  const student = await DB.getStudent();
   const nameEl = document.querySelector('#portal-sidebar .student-name');
   if (nameEl && student.name) nameEl.textContent = student.name;
 
   // Update application count in sidebar if any
-  const apps = DB.getApplications();
+  const apps = await DB.getApplications();
   if (apps.length > 0) {
     const appBadge = document.querySelector('.app-count-badge');
     if (appBadge) appBadge.textContent = apps.length;
