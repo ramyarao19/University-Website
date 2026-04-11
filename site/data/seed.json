@@ -1,0 +1,79 @@
+{
+  "student": {
+    "id": "2024-8842",
+    "name": "Julian Thorne",
+    "email": "j.thorne@scholarly.edu",
+    "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuCmvYzY0PQWAw0XEyBHp13EfeKVXTluKAcIwYGBgvODelw61RyowvoVNPUwlD6MHMvfXMlk94WwmMPdXcIoxjhbv6th3L_07gkyhxHJNUgKtzoS0_5LCWQm7Y5xs5xhPIJVkyLYcb9A0mx_it4aaGB8oWLTeeivSXo_22ocYDybXgUMJb3WHt9RutqgdKXMjAUFI53THVlXpPRK7c0HTi9te5dBtiU2ZndTRVEDwMoOxpO2peXqVbO1RP2IA3QrpCqlYqn1emZRG4si",
+    "major": "Computer Science & Mathematics",
+    "year": "Senior",
+    "gpa": "3.95",
+    "credits_completed": 102,
+    "credits_required": 120,
+    "semesters_remaining": 2,
+    "enrollment_date": "2020-09-01"
+  },
+  "fees": [
+    { "id": "fee-001", "type": "Tuition", "amount": 850.00, "due": "2024-04-15", "status": "pending" },
+    { "id": "fee-002", "type": "Housing", "amount": 375.00, "due": "2024-05-01", "status": "pending" },
+    { "id": "fee-003", "type": "Library Fine", "amount": 15.00, "due": "2024-03-01", "status": "overdue" }
+  ],
+  "internships": [
+    {
+      "id": "int-001",
+      "title": "Junior Editorial Fellow",
+      "company": "London Literary Gazette",
+      "location": "Remote",
+      "icon": "history_edu",
+      "deadline": "2024-04-01",
+      "description": "Join one of the world's leading literary publications as an editorial fellow, curating content across digital and print media.",
+      "type": "Humanities"
+    },
+    {
+      "id": "int-002",
+      "title": "Archival Research Assistant",
+      "company": "The National Archive",
+      "location": "On-site",
+      "icon": "data_exploration",
+      "deadline": "2024-04-15",
+      "description": "Assist in digitizing and cataloging 18th-century manuscripts using modern preservation techniques.",
+      "type": "Research"
+    },
+    {
+      "id": "int-003",
+      "title": "Historical Restoration Liaison",
+      "company": "Cambridge Heritage Trust",
+      "location": "Hybrid",
+      "icon": "architecture",
+      "deadline": "2024-05-01",
+      "description": "Bridge the gap between heritage conservation and modern architectural design on landmark restoration projects.",
+      "type": "Arts"
+    },
+    {
+      "id": "int-004",
+      "title": "Junior Software Engineer",
+      "company": "Google",
+      "location": "Remote",
+      "icon": "engineering",
+      "subtitle": "External Partnership",
+      "deadline": "2024-03-15",
+      "description": "Work with the Google Engineering team on cutting-edge infrastructure projects in a fast-paced, collaborative environment.",
+      "type": "STEM"
+    }
+  ],
+  "notifications": [
+    { "id": "n-001", "title": "Tuition payment due April 15", "body": "Your Spring semester tuition of $850.00 is due in 3 weeks.", "time": "2 hours ago", "read": false, "icon": "payments" },
+    { "id": "n-002", "title": "New internship posted", "body": "Google has posted a Junior Software Engineer position.", "time": "1 day ago", "read": false, "icon": "work" },
+    { "id": "n-003", "title": "Library fine overdue", "body": "You have an outstanding library fine of $15.00.", "time": "3 days ago", "read": true, "icon": "menu_book" },
+    { "id": "n-004", "title": "Course registration opens", "body": "Fall 2024 registration opens on April 20.", "time": "1 week ago", "read": true, "icon": "school" }
+  ],
+  "tuition_rates": {
+    "in_state":       { "tuition": 28500, "fees": 2800 },
+    "out_of_state":   { "tuition": 42500, "fees": 3200 },
+    "international":  { "tuition": 52000, "fees": 4500 }
+  },
+  "housing_rates": {
+    "on_campus":  12800,
+    "off_campus": 9600,
+    "family":     0
+  }
+}

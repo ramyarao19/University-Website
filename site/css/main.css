@@ -1,0 +1,216 @@
+/* ═══════════════════════════════════════════════════════
+   The Scholarly Editorial — Main Stylesheet
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Base ─────────────────────────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+body { font-family: 'Manrope', sans-serif; background: #f8f9fa; }
+h1, h2, h3, h4 { font-family: 'Noto Serif', serif; }
+.label-text { font-family: 'Public Sans', sans-serif; }
+.glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.editorial-shadow { box-shadow: 0 20px 40px -15px rgba(0, 10, 30, 0.06); }
+.editorial-accent { border-left: 4px solid #af2b3e; }
+
+/* ── SPA Page Routing ─────────────────────────────────── */
+.page { display: none; }
+.page.active { display: block; }
+.nav-link { transition: color 0.2s, border-color 0.2s; padding-bottom: 2px; }
+.nav-link.active { color: #af2b3e; border-bottom: 2px solid #af2b3e; font-weight: 700; }
+
+/* ── Portal / Sidebar Layout ──────────────────────────── */
+body.portal-mode #site-nav { display: none !important; }
+body.portal-mode #portal-sidebar { display: flex !important; }
+body.portal-mode .page.active { margin-left: 256px; }
+#portal-sidebar { display: none; }
+.portal-nav-link { transition: all 0.15s; }
+.portal-nav-link.active-portal { background: white; color: #af2b3e !important; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border-radius: 0.5rem; }
+
+/* ── Form Focus States ────────────────────────────────── */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="month"]:focus,
+textarea:focus { outline: none; }
+
+/* ── Toast Notifications ──────────────────────────────── */
+#toast-container {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  background: #000a1e; color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.875rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  transform: translateX(120%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 400px;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.toast.show { transform: translateX(0); opacity: 1; }
+.toast.toast-success { border-left: 4px solid #22c55e; }
+.toast.toast-error { border-left: 4px solid #ef4444; }
+.toast.toast-info { border-left: 4px solid #3b82f6; }
+
+/* ── Search Overlay ───────────────────────────────────── */
+#search-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,10,30,0.85);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 15vh;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#search-overlay.open { opacity: 1; pointer-events: auto; }
+#search-overlay .search-box {
+  background: white; border-radius: 1rem;
+  width: 90%; max-width: 700px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  overflow: hidden;
+  transform: translateY(-20px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#search-overlay.open .search-box { transform: translateY(0); }
+#search-overlay .search-input {
+  width: 100%; border: none; outline: none;
+  padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+  font-family: 'Manrope', sans-serif; font-size: 1.25rem;
+  background: transparent;
+}
+#search-overlay .search-results {
+  max-height: 50vh; overflow-y: auto;
+  border-top: 1px solid #e1e3e4;
+}
+#search-overlay .search-result-item {
+  padding: 1rem 1.5rem;
+  cursor: pointer; display: flex; align-items: center; gap: 1rem;
+  transition: background 0.15s;
+  border-bottom: 1px solid #f3f4f5;
+}
+#search-overlay .search-result-item:hover { background: #f8f9fa; }
+#search-overlay .search-result-item .result-page {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.15em; color: #af2b3e; font-weight: 700;
+  background: #ffdada; padding: 0.2rem 0.5rem; border-radius: 0.25rem;
+}
+
+/* ── Notification Dropdown ────────────────────────────── */
+.notif-dropdown {
+  position: absolute; top: 100%; right: 0; margin-top: 0.5rem;
+  width: 360px; background: white; border-radius: 0.75rem;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  opacity: 0; pointer-events: none;
+  transform: translateY(-8px);
+  transition: all 0.25s ease;
+  z-index: 100;
+}
+.notif-dropdown.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.notif-item {
+  padding: 1rem 1.25rem; border-bottom: 1px solid #f3f4f5;
+  display: flex; gap: 0.75rem; cursor: pointer;
+  transition: background 0.15s;
+}
+.notif-item:hover { background: #f8f9fa; }
+.notif-item.unread { background: #fef9fa; }
+.notif-dot { width: 8px; height: 8px; border-radius: 50%; background: #af2b3e; margin-top: 6px; flex-shrink: 0; }
+
+/* ── Modal ────────────────────────────────────────────── */
+#modal-overlay {
+  position: fixed; inset: 0; z-index: 8000;
+  background: rgba(0,10,30,0.6);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+#modal-overlay.open { opacity: 1; pointer-events: auto; }
+#modal-overlay .modal-box {
+  background: white; border-radius: 1rem;
+  max-width: 520px; width: 90%;
+  padding: 2.5rem; box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+  transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#modal-overlay.open .modal-box { transform: scale(1); }
+
+/* ── Mobile Menu ──────────────────────────────────────── */
+#mobile-menu {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(0,10,30,0.95);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 2rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+#mobile-menu.open { opacity: 1; pointer-events: auto; }
+#mobile-menu button {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 1.25rem; text-transform: uppercase;
+  letter-spacing: 0.2em; color: white;
+  background: none; border: none; cursor: pointer;
+  padding: 0.75rem 2rem; transition: color 0.2s;
+}
+#mobile-menu button:hover { color: #af2b3e; }
+
+/* ── File Upload ──────────────────────────────────────── */
+.file-upload-zone { position: relative; }
+.file-upload-zone input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer;
+}
+.file-upload-zone.drag-over {
+  border-color: #af2b3e !important;
+  background: #fef9fa !important;
+}
+.file-upload-zone .file-info {
+  display: none;
+  padding: 0.75rem 1rem;
+  background: #f0fdf4; border-radius: 0.5rem;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.875rem; color: #166534;
+  margin-top: 0.5rem;
+}
+.file-upload-zone.has-file .file-info { display: flex; align-items: center; gap: 0.5rem; }
+.file-upload-zone.has-file .file-placeholder { display: none; }
+
+/* ── Form Validation ──────────────────────────────────── */
+.field-error { border-color: #ef4444 !important; }
+.error-msg {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 0.75rem; color: #ef4444;
+  margin-top: 0.25rem;
+}
+
+/* ── Academics Filter ─────────────────────────────────── */
+.college-card { transition: opacity 0.3s, transform 0.3s; }
+.college-card.hidden-filter { opacity: 0; transform: scale(0.95); height: 0; overflow: hidden; margin: 0; padding: 0; }
+
+/* ── Hamburger icon ───────────────────────────────────── */
+#hamburger-btn { display: none; }
+@media (max-width: 768px) {
+  #hamburger-btn { display: block; }
+}
+
+/* ── Smooth fade for page transitions ─────────────────── */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.page.active { animation: fadeIn 0.3s ease-out; }
+
+/* ── Success state ────────────────────────────────────── */
+.form-success {
+  text-align: center; padding: 3rem;
+}
+.form-success .checkmark {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: #22c55e; color: white;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }

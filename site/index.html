@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Scholarly Editorial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#000a1e",
+          "primary-container": "#002147",
+          "on-primary": "#ffffff",
+          "on-primary-container": "#708ab5",
+          "on-primary-fixed": "#001b3d",
+          "on-primary-fixed-variant": "#2d476f",
+          "primary-fixed": "#d6e3ff",
+          "primary-fixed-dim": "#aec7f6",
+          "secondary": "#af2b3e",
+          "secondary-container": "#fd6673",
+          "secondary-fixed": "#ffdada",
+          "secondary-fixed-dim": "#ffb3b5",
+          "on-secondary": "#ffffff",
+          "on-secondary-container": "#680018",
+          "on-secondary-fixed": "#40000b",
+          "on-secondary-fixed-variant": "#8e0f28",
+          "tertiary": "#110a00",
+          "tertiary-container": "#2e1f00",
+          "tertiary-fixed": "#ffdea5",
+          "tertiary-fixed-dim": "#e9c176",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-container": "#a68440",
+          "on-tertiary-fixed": "#261900",
+          "on-tertiary-fixed-variant": "#5d4201",
+          "background": "#f8f9fa",
+          "on-background": "#191c1d",
+          "surface": "#f8f9fa",
+          "surface-dim": "#d9dadb",
+          "surface-bright": "#f8f9fa",
+          "surface-variant": "#e1e3e4",
+          "surface-container-lowest": "#ffffff",
+          "surface-container-low": "#f3f4f5",
+          "surface-container": "#edeeef",
+          "surface-container-high": "#e7e8e9",
+          "surface-container-highest": "#e1e3e4",
+          "surface-tint": "#465f88",
+          "on-surface": "#191c1d",
+          "on-surface-variant": "#44474e",
+          "inverse-surface": "#2e3132",
+          "inverse-on-surface": "#f0f1f2",
+          "inverse-primary": "#aec7f6",
+          "outline": "#74777f",
+          "outline-variant": "#c4c6cf",
+          "error": "#ba1a1a",
+          "error-container": "#ffdad6",
+          "on-error": "#ffffff",
+          "on-error-container": "#93000a",
+        },
+        fontFamily: {
+          "headline": ["Noto Serif", "serif"],
+          "noto-serif": ["Noto Serif", "serif"],
+          "body": ["Manrope", "sans-serif"],
+          "manrope": ["Manrope", "sans-serif"],
+          "label": ["Public Sans", "sans-serif"],
+          "public-sans": ["Public Sans", "sans-serif"],
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-secondary/20">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SHARED FIXED NAVIGATION                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<header id="site-nav" class="fixed top-0 w-full z-50 bg-white/85 glass-nav shadow-sm">
+  <div class="flex justify-between items-center px-8 py-5 max-w-screen-2xl mx-auto">
+    <div class="flex items-center gap-3">
+      <button onclick="navigate('home')" class="font-noto-serif italic text-xl font-bold text-primary tracking-tight hover:text-primary-container transition-colors">
+        The Scholarly Editorial
+      </button>
+    </div>
+    <nav class="hidden md:flex items-center gap-10 font-label text-xs uppercase tracking-widest">
+      <button onclick="navigate('home')" data-page="home" class="nav-link text-on-surface-variant hover:text-secondary">Home</button>
+      <button onclick="navigate('academics')" data-page="academics" class="nav-link text-on-surface-variant hover:text-secondary">Academics</button>
+      <button onclick="navigate('admissions')" data-page="admissions" class="nav-link text-on-surface-variant hover:text-secondary">Admissions</button>
+      <button onclick="navigate('about')" data-page="about" class="nav-link text-on-surface-variant hover:text-secondary">About</button>
+      <button onclick="navigate('campus')" data-page="campus" class="nav-link text-on-surface-variant hover:text-secondary">Campus Life</button>
+      <button onclick="navigate('portal')" data-page="portal" class="nav-link text-on-surface-variant hover:text-secondary">Portal</button>
+    </nav>
+    <div class="flex items-center gap-4">
+      <button onclick="toggleSearch()" class="material-symbols-outlined text-on-surface-variant text-xl hidden md:block hover:text-secondary transition-colors" title="Search (Ctrl+K)">search</button>
+      <button onclick="navigate('admissions')" class="bg-primary text-on-primary px-6 py-2 rounded-md font-label text-xs uppercase tracking-widest hover:bg-primary-container transition-all hidden sm:block">Apply Now</button>
+      <button id="hamburger-btn" onclick="toggleMobileMenu()" class="material-symbols-outlined text-on-surface-variant text-2xl md:hidden">menu</button>
+    </div>
+  </div>
+  <div class="h-[1px] bg-outline-variant/20 w-full"></div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  PAGE: HOME                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-home" class="page">
+<main class="pt-[72px]">
+<!-- Hero Section -->
+<section class="relative min-h-[795px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/40 to-transparent z-10"></div>
+<img alt="University Campus" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhLAYDS7O50ZH15KfLUCXsILPSeiQnJpBTYvcToChTAeH6HGLukIP7jFO7fSqqxQ3y3cDvylLDWjNjbFyaE1vfRm-eFohPVtyzv0CnSxcA39b00RE3yu07dUFja8hF1dTsiUS1W4mbyxMTHuwY10IdT3bkCCXcuJpu6kyL2mTV1bvDXZXq971NW_AmttpmpQsG4_aVBO22-e51DbbDz_Oj1iAGSpz6V3Omo1Z4mpwRXQDdMR0_6H_TpHhKzACHxxTiiEfbDdzKYj5z"/>
+</div>
+<div class="relative z-20 max-w-7xl mx-auto px-6 w-full">
+<div class="max-w-3xl">
+<span class="label-text text-secondary font-bold tracking-[0.2em] text-sm uppercase mb-4 block">ESTABLISHED 1892</span>
+<h1 class="text-6xl md:text-8xl text-white font-bold leading-[1.1] mb-8 tracking-tighter">Where Heritage Meets <br/><span class="italic font-normal">Modern Inquiry.</span></h1>
+<p class="text-xl text-white/80 max-w-xl mb-10 leading-relaxed font-body">Cultivating the next generation of global leaders through rigorous academic pursuit and a commitment to communal excellence on our historic campus grounds.</p>
+<div class="flex flex-wrap gap-4">
+<button onclick="navigate('admissions')" class="bg-secondary text-on-secondary px-8 py-4 rounded-md font-label font-bold text-sm tracking-widest hover:brightness-110 transition-all">START YOUR JOURNEY</button>
+<button onclick="navigate('campus')" class="border border-white/30 text-white backdrop-blur-sm px-8 py-4 rounded-md font-label font-bold text-sm tracking-widest hover:bg-white/10 transition-all">VISIT CAMPUS</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Links: Floating Glass Layout -->
+<section class="relative z-30 -mt-20 px-6">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 shadow-2xl overflow-hidden rounded-xl">
+<button onclick="navigate('admissions')" class="group bg-surface-container-lowest p-10 border-r border-outline-variant/15 flex flex-col justify-between aspect-square md:aspect-auto hover:bg-primary transition-all duration-500 text-left">
+<div>
+<span class="material-symbols-outlined text-secondary group-hover:text-tertiary-fixed mb-6 text-4xl">account_balance</span>
+<h3 class="text-2xl font-bold group-hover:text-white">Prospective Students</h3>
+<p class="mt-4 text-on-surface-variant group-hover:text-white/70">Discover our programs, financial aid options, and student life initiatives.</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-white self-end transition-transform group-hover:translate-x-2">arrow_forward</span>
+</button>
+<button onclick="navigate('about')" class="group bg-surface-container-lowest p-10 border-r border-outline-variant/15 flex flex-col justify-between aspect-square md:aspect-auto hover:bg-primary transition-all duration-500 text-left">
+<div>
+<span class="material-symbols-outlined text-secondary group-hover:text-tertiary-fixed mb-6 text-4xl">groups</span>
+<h3 class="text-2xl font-bold group-hover:text-white">Faculty &amp; Staff</h3>
+<p class="mt-4 text-on-surface-variant group-hover:text-white/70">Access research portals, administrative resources, and academic calendars.</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-white self-end transition-transform group-hover:translate-x-2">arrow_forward</span>
+</button>
+<button onclick="navigate('about')" class="group bg-surface-container-lowest p-10 flex flex-col justify-between aspect-square md:aspect-auto hover:bg-primary transition-all duration-500 text-left">
+<div>
+<span class="material-symbols-outlined text-secondary group-hover:text-tertiary-fixed mb-6 text-4xl">history_edu</span>
+<h3 class="text-2xl font-bold group-hover:text-white">Alumni &amp; Donors</h3>
+<p class="mt-4 text-on-surface-variant group-hover:text-white/70">Stay connected with your alma mater and support the future of education.</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-white self-end transition-transform group-hover:translate-x-2">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Scholar's Pull-Quote -->
+<section class="py-32 px-6">
+<div class="max-w-4xl mx-auto">
+<div class="bg-surface-container-low p-12 md:p-20 relative">
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-secondary"></div>
+<blockquote class="text-3xl md:text-5xl font-headline font-bold text-primary leading-tight italic">
+"The pursuit of knowledge is not a destination, but a lifelong commitment to understanding the complexities of our shared human experience."
+</blockquote>
+<cite class="block mt-10 font-label text-on-surface-variant uppercase tracking-widest font-bold text-xs"> — Dr. Eleanor Vance, Dean of Faculty</cite>
+</div>
+</div>
+</section>
+<!-- News & Research -->
+<section class="py-24 bg-white px-6">
+<div class="max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="label-text text-secondary font-bold tracking-widest text-xs uppercase mb-2 block">UNIVERSITY JOURNALS</span>
+<h2 class="text-5xl font-bold text-primary">News &amp; Research</h2>
+</div>
+<a class="hidden md:flex items-center gap-2 font-label font-bold text-sm tracking-widest text-primary border-b-2 border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors cursor-pointer" onclick="showToast('News archive coming soon — stay tuned!')">
+VIEW ALL STORIES <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-7 group cursor-pointer">
+<div class="aspect-[16/9] overflow-hidden rounded-lg mb-6">
+<img alt="Research News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBBM8QySYWawSM7zOdKlOPkbvyS4lpUZ06Ki2sG0CvMUql4YVbQjPaKUo3rv1g1VQemWk3HVH1l0fdfeZ8ZUEGP75QOXgIbN6nwE7dqES5jfzcKsJPtBW_16Bs7XbsPYUSYT8zaF0AVNWRML6659O4DnS6W0pM9XM79ePNlz5wWzV_0LgdK3M7-IeuJxgcRTsfkxh8GKbqoL_FDEEJouT1QA15s18ySXwORoMhFt7X4vVUhlom3rgaCeE1e8Ao6cIMMDlA6LQa7Eba"/>
+</div>
+<span class="label-text text-secondary font-bold text-xs tracking-widest uppercase mb-3 block">SCIENCE &amp; INNOVATION</span>
+<h3 class="text-3xl font-bold text-primary mb-4 group-hover:underline">Breakthrough in Neural Architecture Mapping: The Future of Cognitive Computing</h3>
+<p class="text-on-surface-variant leading-relaxed">Professor James Thorne's team at the Institute of Technology announces a landmark discovery in how neural pathways process complex visual data...</p>
+</div>
+<div class="md:col-span-5 flex flex-col gap-8">
+<div class="flex gap-6 group cursor-pointer">
+<div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
+<img alt="Humanities" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfBLXPGP3iowOZkUaEhneq2iwE2CEmxr9LdIs4YM2YlBFpPINxKcvYmWhnA32WyQHT0Uuqi2PajLNssoGqIvfcffj1WzPLmDYx7nIRgKDuMQ8PILTKXeEZcJ2iaumxLRfkrHB4lJvnf9-5rghzRmHmeqk6njAGgDRL-gR6RKvpmCPRJWt0z5g9ZqE9rR0orwT9AzzsDzDasm1EOZLXjC-t9CUgfgF4-rbAg1MJmk2tPUTDURURtknmoVKDVLfg0coQDY_rR1nUg50l"/>
+</div>
+<div>
+<span class="label-text text-secondary font-bold text-[10px] tracking-[0.2em] uppercase mb-1 block">HUMANITIES</span>
+<h4 class="text-lg font-bold text-primary leading-tight group-hover:text-secondary transition-colors">Revisiting the Classics: New Translation of Aristotelian Ethics Released</h4>
+<p class="text-sm text-on-surface-variant mt-2">March 14, 2024</p>
+</div>
+</div>
+<div class="flex gap-6 group cursor-pointer">
+<div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
+<img alt="Athletics" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7mlo93Q8ZkRm1V4zaDykEZjPeZsERXEBtMWyKdwlaq64gYFsT0QKs4loRddJ3mw740IGVgnt7UJGF6XhDW0MgBPegSfbzQ8tP9H1SgFje1HE50vdj0OQuWUqNHgII7fnxiO4qmpL5cG8odnvtoFtZpNyGqI3u_rvdJe6ej3Mnyy6o1mW62-yJbpjUz7KR9UQPQnadzHnUTMJ5L5tgxEZZKppb4MEQdWE2uYOw7W-2Sz-lmAPVXyivLsUSvDjUqyBMaqw8d8BRBWeA"/>
+</div>
+<div>
+<span class="label-text text-secondary font-bold text-[10px] tracking-[0.2em] uppercase mb-1 block">ATHLETICS</span>
+<h4 class="text-lg font-bold text-primary leading-tight group-hover:text-secondary transition-colors">University Tigers Secure Regional Championship in Overtime Victory</h4>
+<p class="text-sm text-on-surface-variant mt-2">March 12, 2024</p>
+</div>
+</div>
+<div class="flex gap-6 group cursor-pointer">
+<div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
+<img alt="Campus Life" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfOpFz2pGxHwLPAzVfw1Pz8wYtI7UojqmodWysTD7ueayWVoVBif-LXsMF_CnDGG3tfdNltLNYXbQQ5VKc5ytVZhe6A2FWcJFCWBx7uZQ6o8uUwazYbGHDmXW7FtAW8COU5kvoiJ76fLeJwxWAAK6oF7tJ2485dlfMnGR1fvVx9CtpcTE5Xsk0UwgeqP54AskQecPAkUspbGr43DGMHHCIwsaIL1zwlPIx7OQOg4zUSQE7vgaestsdfQrUOWjq_Hs-scx63wFu7s5L"/>
+</div>
+<div>
+<span class="label-text text-secondary font-bold text-[10px] tracking-[0.2em] uppercase mb-1 block">CAMPUS</span>
+<h4 class="text-lg font-bold text-primary leading-tight group-hover:text-secondary transition-colors">Sustainable Campus Initiative Reaches 50% Carbon Reduction Goal</h4>
+<p class="text-sm text-on-surface-variant mt-2">March 08, 2024</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Events Section -->
+<section class="py-24 bg-surface-container px-6">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-4xl font-bold text-primary mb-12">Upcoming Events</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:shadow-xl transition-shadow border-t-4 border-secondary cursor-pointer" onclick="showToast('Event details page coming soon')">
+<div class="flex items-baseline gap-2"><span class="text-3xl font-bold text-secondary">22</span><span class="font-label text-on-surface-variant font-bold uppercase tracking-widest text-xs">MAR</span></div>
+<h4 class="text-xl font-bold text-primary">Annual Symposium on Ethics &amp; AI</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">schedule</span><span>10:00 AM — 4:00 PM</span></div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">location_on</span><span>Main Auditorium</span></div>
+</div>
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:shadow-xl transition-shadow border-t-4 border-primary cursor-pointer" onclick="showToast('Event details page coming soon')">
+<div class="flex items-baseline gap-2"><span class="text-3xl font-bold text-primary">25</span><span class="font-label text-on-surface-variant font-bold uppercase tracking-widest text-xs">MAR</span></div>
+<h4 class="text-xl font-bold text-primary">Graduate Admissions Open House</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">schedule</span><span>2:00 PM — 6:00 PM</span></div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">location_on</span><span>Student Union</span></div>
+</div>
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:shadow-xl transition-shadow border-t-4 border-primary cursor-pointer" onclick="showToast('Event details page coming soon')">
+<div class="flex items-baseline gap-2"><span class="text-3xl font-bold text-primary">28</span><span class="font-label text-on-surface-variant font-bold uppercase tracking-widest text-xs">MAR</span></div>
+<h4 class="text-xl font-bold text-primary">Spring Chamber Orchestra Concert</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">schedule</span><span>7:30 PM — 9:30 PM</span></div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">location_on</span><span>Arts Center Hall</span></div>
+</div>
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:shadow-xl transition-shadow border-t-4 border-primary cursor-pointer" onclick="showToast('Event details page coming soon')">
+<div class="flex items-baseline gap-2"><span class="text-3xl font-bold text-primary">02</span><span class="font-label text-on-surface-variant font-bold uppercase tracking-widest text-xs">APR</span></div>
+<h4 class="text-xl font-bold text-primary">Alumni Career Networking Night</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">schedule</span><span>6:00 PM — 8:30 PM</span></div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">location_on</span><span>Executive Center</span></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-50 border-t border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto gap-8">
+<div>
+<div class="font-noto-serif italic text-xl text-white mb-2">The Scholarly Editorial</div>
+<p class="font-public-sans text-xs uppercase tracking-widest text-slate-400">&copy; 2024 The Scholarly Editorial University. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-8 font-public-sans text-xs uppercase tracking-widest">
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Privacy Policy page coming soon')">Privacy Policy</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Accessibility page coming soon')">Accessibility</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Directory page coming soon')">Directory</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="navigate('admissions')">Contact</a>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors" onclick="showToast('Social sharing coming soon')">share</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors" onclick="showToast('Email: info@scholarly-editorial.edu', 'info')">mail</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors" onclick="navigate('campus')">map</span>
+</div>
+</div>
+</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  PAGE: ABOUT                                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[820px] flex items-center pt-24 pb-32 overflow-hidden bg-primary">
+<div class="absolute inset-0 opacity-40">
+<img alt="University Heritage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACGNyQSFSCw8ghi7alKQPM_zLoUYoGpUjhsgsGTDmbcJ0ndlUeDPriP6Xzk0WjaEmDHl2IwCnyn4XvG3eQuqkBZ3Wrk0HiUNEnRW2F5UFarjGmeEzTyuWSTjZLtY9gIRDbtCrAIhSifpEY1swTB51QFTWsZg8Wlqp4Y11_XqHbrFeYGuvwxdWm9qIcgzpnShBUnjf3623L7CHcEc8sxvpGR81-1PoSKp0ktYNP5Un003_-ZUSsTLQWpda4zpZqJ2JDr0UjNdyFWXb9"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent"></div>
+</div>
+<div class="relative max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<div class="md:col-span-8">
+<span class="inline-block text-secondary font-label text-sm uppercase tracking-[0.3em] mb-6">Established 1892</span>
+<h1 class="font-noto-serif text-5xl md:text-7xl lg:text-8xl text-on-primary leading-tight mb-8 tracking-tighter">
+Legacy of <br/><span class="italic text-primary-fixed-dim">Enlightenment</span>
+</h1>
+<div class="bg-surface-container-low/10 border-l-4 border-secondary p-8 md:max-w-2xl">
+<p class="font-noto-serif text-2xl md:text-3xl italic text-on-primary leading-relaxed">
+"To inspire intellectual curiosity and lifelong discovery."
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- History Section -->
+<section class="py-32 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row gap-20">
+<div class="md:w-1/3">
+<h2 class="font-noto-serif text-4xl text-primary sticky top-32">Chronicles of <br/>Academic Ascent</h2>
+<p class="mt-6 text-on-surface-variant font-body leading-relaxed max-w-sm">
+From a small regional college to a global epicenter of research and artistry, our journey reflects a century-long commitment to the pursuit of truth.
+</p>
+</div>
+<div class="md:w-2/3 space-y-24">
+<div class="relative pl-12">
+<div class="absolute left-0 top-0 text-secondary font-noto-serif text-xl font-bold">1892</div>
+<h3 class="font-noto-serif text-2xl mb-4">The Foundation Stone</h3>
+<p class="text-on-surface-variant font-body text-lg leading-relaxed mb-6">Founded by visionary philanthropists, the university opened its doors with a single hall of learning and a faculty of twelve dedicated scholars.</p>
+<img alt="University Foundation" class="w-full aspect-[21/9] object-cover grayscale brightness-90 contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeG9-w_nBlBh4yz0opgBHb7wPTYEE2JhM2M5nwZHDJS-jSKkx6CV5oxnQfytVg947l04duF7gTP4D6I7MC8HBcbw6w-1hbAowmb5glNPqe8ClhoxhLoYz4VdaZZrnYftJdf69BT18EZUI8-BS7YmgVVcwWFY2KHVRApQnaCEm3PAi9bbmnDkj0HBipb0iuo_gvWiHLYpYXTihZ38cWU2cDEJnVV46FQ5ccL42K7v7y45kMTHjUK2QbIR-dSDPDF3rb6-vL5SQhHQVf"/>
+</div>
+<div class="relative pl-12">
+<div class="absolute left-0 top-0 text-secondary font-noto-serif text-xl font-bold">1945</div>
+<h3 class="font-noto-serif text-2xl mb-4">Post-War Expansion</h3>
+<p class="text-on-surface-variant font-body text-lg leading-relaxed mb-6">Following the global conflict, the university pivoted towards scientific research, establishing the now-world-renowned Faculty of Natural Sciences.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="h-48 bg-surface-container overflow-hidden">
+<img alt="Scientific Era" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxmElFw3jIYSp3qzQSRB6quJDL5_RuR8AglXP_127-WWsrWwDBzZ3Ud-9-GORESwYIYr9DSVNUE9S2bbEFyv6E_ZEVHPxbhJoKItGOrq9-4YrXpRwBVz0kROSBRyjukuNsZeSQ4vZhVGfVFnbg4q1e35GwdOHN5NBfSLCKXLW2pR7JGIok_ae6frEPTwz0d0XOzKxtZJY0b57j1rnUhPmQq-i560dyd7vp4XR2d_usKhWQ27LvRYLh6EXYQoZEPqEyHoBRsn29OqqM"/>
+</div>
+<div class="h-48 bg-surface-container overflow-hidden translate-y-8">
+<img alt="Literature Growth" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCchWCV6N3u462ZqyuovUfK5cow9JiS656nLadFyE-jkFHBtjxhaUnkS0n5a6GxBH4Ikf-YB2aVVJ7xceSGHFna3tGwxLCMfyRYTonC9PoR7U6bJMLDvRn3EATGTJlY_vVoxPBGMNRSK3tY1MRjsdoXrhOnHie8p2HYTyY0LrtrKXtyCFLcCuQT3adglIpch24h0VvkSjnztZ_GZz7I9s4-bU_N7ZtcxlcioG51uB796Gdhe9Tc9TxCdlFZo6CCJjy7CevocQ56JcZR"/>
+</div>
+</div>
+</div>
+<div class="relative pl-12">
+<div class="absolute left-0 top-0 text-secondary font-noto-serif text-xl font-bold">2024</div>
+<h3 class="font-noto-serif text-2xl mb-4">The Digital Frontier</h3>
+<p class="text-on-surface-variant font-body text-lg leading-relaxed">Today, we integrate tradition with technology, fostering cross-disciplinary research that addresses the complexities of the 21st century.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Values -->
+<section class="py-32 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-20 text-center">
+<span class="text-secondary font-label text-xs uppercase tracking-widest mb-4 inline-block">Our Moral Compass</span>
+<h2 class="font-noto-serif text-5xl text-primary">Foundational Virtues</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="p-10 bg-surface-container-lowest editorial-shadow rounded-lg group hover:-translate-y-2 transition-transform duration-500">
+<div class="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-full mb-8 group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl text-secondary group-hover:text-white">auto_awesome</span>
+</div>
+<h4 class="font-noto-serif text-2xl mb-4">Excellence</h4>
+<p class="text-on-surface-variant font-body leading-relaxed">A relentless pursuit of quality in research, teaching, and administrative stewardship. We settle for nothing less than world-class impact.</p>
+</div>
+<div class="p-10 bg-surface-container-lowest editorial-shadow rounded-lg group hover:-translate-y-2 transition-transform duration-500">
+<div class="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-full mb-8 group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl text-secondary group-hover:text-white">verified_user</span>
+</div>
+<h4 class="font-noto-serif text-2xl mb-4">Integrity</h4>
+<p class="text-on-surface-variant font-body leading-relaxed">Upholding the highest ethical standards in all inquiries, ensuring that our scholarly contributions are built upon a bedrock of honesty.</p>
+</div>
+<div class="p-10 bg-surface-container-lowest editorial-shadow rounded-lg group hover:-translate-y-2 transition-transform duration-500">
+<div class="w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-full mb-8 group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl text-secondary group-hover:text-white">search_insights</span>
+</div>
+<h4 class="font-noto-serif text-2xl mb-4">Inquiry</h4>
+<p class="text-on-surface-variant font-body leading-relaxed">Fostering an environment where every question is valid and every voice is heard, driving the engine of discovery forward through curiosity.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Leadership -->
+<section class="py-32 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex items-end justify-between mb-20 border-b border-outline-variant/30 pb-12">
+<div class="max-w-xl">
+<h2 class="font-noto-serif text-5xl text-primary mb-6">Academic Leadership</h2>
+<p class="text-on-surface-variant text-lg">Guided by a cabinet of world-renowned scholars and visionaries dedicated to the university's enduring mission.</p>
+</div>
+<a class="text-secondary font-label text-sm uppercase tracking-widest hover:underline mb-2 cursor-pointer" onclick="showToast('Full administration directory coming soon')">View Full Administration</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+<div class="flex flex-col md:flex-row gap-10 items-start">
+<div class="w-full md:w-64 h-80 bg-surface-container relative">
+<img alt="Dr. Julian Vane" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVrUT0eXS68I45OkpZYlFljoeS9lcQFdViZHy458IzuvQUXy1BLsWm6Hu7k_ikC1keHSpU5DvQQwBieTeUnEC1NAPlXfmOZFHEDxSTG8H2ZKBRaixCzs025uavbOPol5sS5GKftjLOW55RlOoxtC1hg5ivW_EQWUA6qvQJsCYDyfPOSrtmyRKDfal6aXEPqvVrnwGmsO7BOqdFatDiQngkRdBgyYNQTE--EcSjQaUvuKgzC7IOELK5_PN29LXm-qWifOXInyH62S8s"/>
+<div class="absolute -bottom-4 -right-4 bg-secondary text-on-secondary px-6 py-4 text-sm font-label uppercase tracking-widest">Chancellor</div>
+</div>
+<div class="flex-1 pt-4">
+<h3 class="font-noto-serif text-3xl text-primary mb-2">Dr. Julian Vane</h3>
+<p class="text-secondary font-label text-xs uppercase tracking-widest mb-6 italic">Ph.D. in Political Philosophy, Oxford</p>
+<p class="text-on-surface-variant leading-relaxed mb-6 font-body">With over thirty years in higher education leadership, Dr. Vane has been instrumental in securing the university's status as a top-tier research institution.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-outline hover:text-secondary cursor-pointer" onclick="showToast('Email: j.vane@scholarly-editorial.edu', 'info')">alternate_email</span>
+<span class="material-symbols-outlined text-outline hover:text-secondary cursor-pointer" onclick="showToast('Faculty profile page coming soon')">description</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+<div class="space-y-4">
+<div class="h-48 bg-surface-container overflow-hidden rounded">
+<img alt="Dean of Sciences" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA2mIlkl2TJtSAGVPIoO_9_b8L9xaHmMU86JvwmmkE3wYaxwjBqZACRefpHJlEqGkWnkOPyS3Uoag7UQxSmkIaLYhYqz83yb54Mf3MlAU9hwSIkEYqnFH5QWTv_FahnLfTcCNT7AFUvhCkF4JCgicOCUILBRXzHJyEnG_JcDwP_czkMe8ADkoFiTD50VdeYEMIugjeUu95OahxNAZuYpDiZFWT4DREEHNaNHxyfCJikco4_sjnUf0mOS3pPPniU8vOFOrE0lIBMpqz"/>
+</div>
+<h4 class="font-noto-serif text-xl">Dr. Elara Thorne</h4>
+<p class="text-on-surface-variant text-xs font-label uppercase">Dean, Faculty of Sciences</p>
+</div>
+<div class="space-y-4">
+<div class="h-48 bg-surface-container overflow-hidden rounded">
+<img alt="Dean of Humanities" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuFUZtMZtusu5uBDzrTMYyl5DMmmMGTk2HIiGXA-d0uvknQXIRuflF6oa1zMjFD7dA1HcOYnqpCspW3u84LQPPup5MxGZw24Sv1NOJzW8jQg2M1muk4Nmz__kkvAaXArnfutLJwuDPKGgTMKrddVNT5TiGs3KI4_qlgrh4YcYdILYDdLz5k7xNqf_ELcpVEhFjBqNns2FbPuZKesQB0QKogBbBnSQedIR1lK2sz7orsdA0Qpmxr7aEhBIlxQTlBJSaQ7GDe57tHV_3"/>
+</div>
+<h4 class="font-noto-serif text-xl">Prof. Marcus Chen</h4>
+<p class="text-on-surface-variant text-xs font-label uppercase">Dean, Humanities &amp; Arts</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="py-32 bg-primary overflow-hidden relative">
+<div class="absolute right-0 top-0 w-1/3 h-full bg-secondary opacity-10 -skew-x-12 translate-x-20"></div>
+<div class="max-w-7xl mx-auto px-8 relative z-10 flex flex-col md:flex-row items-center gap-16">
+<div class="md:w-1/2">
+<h2 class="font-noto-serif text-5xl text-on-primary mb-8 leading-tight">Witness the <span class="italic">Legacy</span> in Person.</h2>
+<p class="text-on-primary-container text-xl font-body leading-relaxed mb-10 max-w-lg">Explore our historic quadrangles, state-of-the-art labs, and the hallowed halls of the Great Library. Experience the scholarly editorial for yourself.</p>
+<div class="flex flex-wrap gap-6">
+<button onclick="showToast('Campus tour booking coming soon — check back later!', 'info')" class="bg-secondary text-on-secondary px-10 py-4 rounded-md font-label text-sm uppercase tracking-widest hover:brightness-110 transition-all">Book a Campus Tour</button>
+<button onclick="navigate('campus')" class="bg-transparent border border-on-primary-container text-on-primary px-10 py-4 rounded-md font-label text-sm uppercase tracking-widest hover:bg-on-primary-container/10 transition-all">Virtual Campus Map</button>
+</div>
+</div>
+<div class="md:w-1/2 grid grid-cols-2 gap-4">
+<img alt="Campus View" class="w-full h-80 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDPWDAjDs3W_4535TUydakBhoLRZeZqKQPkRvAzyVDZ3r-pNyYQh2SYljIaCWL8gyWRjqL1CET6nxDD-Y1MhbECxuaU0Q1nS2Duf6M408DXKkNLsTqA-tjZ97eReOGl2EMWSQfA5UZihmBL_wG7WvzkJ_k3SLu34_5SlUAFO9rei2aJzh2obfw_qPaZE2E_p3qEgEAg5Ba8EBj3xJ88hTLeGEn-3YZozye4Bs_0eDzEF5TV84fvgtvDvyMVygQuDeQwfnSGcwXrlvX"/>
+<img alt="Architecture detail" class="w-full h-64 object-cover rounded-lg mt-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoQPZLG9RHjtlVJKS1KRKA-7hc-i5C1V4wxQI3BJmampzudWB7tWtjk38Pnt2ibknukQ5mZb3ggiTs70CXGfuuz1-qBSx04pctkeOH68YlaCUh7CDX8nlIbi5QFq3LwyNFnxEzGgzy6B1ZZ8S7p1r0wOqDy55JHYgqiTqtpSAltzgE-qUShc0CDrk6F-g5wghS39_70koP5A5PTiEpRyV-lAS8beUIRsijpK_t_SSQTQHgMk_UfJxDNU_-K7LjRp63JkSbGyw4PXfM"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-12 flex flex-col items-center justify-center space-y-8 bg-primary-container border-t-4 border-secondary">
+<div class="flex flex-col items-center gap-6">
+<span class="font-noto-serif text-2xl text-white">The Scholarly Editorial</span>
+<div class="flex flex-wrap justify-center gap-8 font-manrope text-sm tracking-wide">
+<a class="text-slate-300 opacity-70 hover:opacity-100 hover:text-white transition-opacity cursor-pointer" onclick="showToast('Privacy Policy page coming soon')">Privacy Policy</a>
+<a class="text-slate-300 opacity-70 hover:opacity-100 hover:text-white transition-opacity cursor-pointer" onclick="showToast('Terms of Service page coming soon')">Terms of Service</a>
+<a class="text-slate-300 opacity-70 hover:opacity-100 hover:text-white transition-opacity cursor-pointer" onclick="showToast('Accessibility page coming soon')">Accessibility</a>
+<a class="text-slate-300 opacity-70 hover:opacity-100 hover:text-white transition-opacity cursor-pointer" onclick="navigate('admissions')">Contact Us</a>
+</div>
+</div>
+<p class="text-slate-400 font-manrope text-xs tracking-widest text-center">&copy; 2024 The Scholarly Editorial. All Rights Reserved. Established 1892.</p>
+</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  PAGE: ACADEMICS                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-academics" class="page">
+<main class="pt-32 pb-24">
+<!-- Hero -->
+<header class="max-w-screen-2xl mx-auto px-12 mb-24">
+<div class="flex flex-col md:flex-row items-end gap-12">
+<div class="flex-1">
+<span class="font-label text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-6 block">Academic Excellence</span>
+<h1 class="font-headline text-7xl font-bold text-primary leading-none tracking-tighter mb-8">
+The Pursuit of <br/><span class="italic font-normal">Timeless Knowledge.</span>
+</h1>
+<p class="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">
+At The Scholarly Editorial, academics are not merely a curriculum but a lifelong inquiry. Explore our distinct colleges, each a sanctuary for rigorous thought and transformative research.
+</p>
+</div>
+<div class="w-full md:w-1/3 aspect-[4/5] bg-surface-container relative overflow-hidden rounded-lg">
+<img alt="Historic library" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZrO9_2GyUACoyw4ul5pWiMzCgYKLJxt5hW4EkC8slP3I65WxH5t1S85BVkQj5QyM8tjkWi33D9_B-yE1U22P0FBvD3ZREgdGR5L66_Ailp-IFPnyJ7eGKpU_BqtZtRX79cHBqQnepyTcHn9BozeoMjEdCd6YKMnBUaYuoSdI6AoEj-d9GCw_3wc8ix06tszbZpXVI-PTGtkWnmn6d3wo_xy5V6ZT6fvn7szdAo9wb5H7E89zj-LRomfielemZvA799CmGT2Q4zeaX"/>
+</div>
+</div>
+</header>
+<!-- Search & Filter -->
+<section class="max-w-screen-2xl mx-auto px-12 mb-24">
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1 w-full relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input id="academics-search" class="w-full bg-transparent border-b-2 border-outline-variant focus:border-secondary transition-colors py-4 pl-12 font-body text-lg outline-none" placeholder="Search major, minor, or research field..." type="text"/>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<select id="academics-level" class="bg-surface-container-highest border-none text-on-surface font-label text-sm px-6 py-4 rounded-md focus:ring-0">
+<option value="all">Level: All</option><option value="undergraduate">Level: Undergraduate</option><option value="graduate">Level: Graduate</option><option value="professional">Level: Professional</option>
+</select>
+<select id="academics-area" class="bg-surface-container-highest border-none text-on-surface font-label text-sm px-6 py-4 rounded-md focus:ring-0">
+<option value="all">Area: All Disciplines</option><option value="stem">Area: STEM</option><option value="humanities">Area: Humanities</option><option value="arts">Area: Fine Arts</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Colleges Grid -->
+<section class="max-w-screen-2xl mx-auto px-12 mb-32">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-20">
+<div class="college-card group cursor-pointer" data-level="undergraduate,graduate" data-area="stem">
+<div class="aspect-[16/10] overflow-hidden mb-8 rounded-lg relative">
+<img alt="Engineering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcYII5i_yZcN_LTiGoQjKa4Afy4vjM8jVDHmEtqAU0OSBdzDmJnuZJ8KpXhIGiyYVK2S5rQBgI1NHLcK5181Mj1QnEHVgVOX2e5ka4WyMvunXpyXlWqh5EkZrNj7kdrLvwux_D_BwyQr0fjdWQVD7Hth1GKsTaeyrybxK6vb4hQCw8slT0SOJ0acQRcwCRxYu4dFHBI6IbANaxbU1V_iyz19lNX4UPwUPqxhuR4dqHRgkV2_PdLJUDohXWLedQnFrlKMG0RGWqkBdG"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-headline text-3xl font-bold text-primary mb-4">College of Engineering</h3>
+<p class="font-body text-on-surface-variant mb-6 leading-relaxed">Pioneering the future of sustainable infrastructure, quantum computing, and advanced aerospace technologies through hands-on laboratory exploration.</p>
+<a class="font-label text-sm font-bold uppercase tracking-widest text-secondary flex items-center gap-2 cursor-pointer" onclick="showToast('Engineering programs catalog coming soon')">View Programs <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="college-card group cursor-pointer" data-level="undergraduate,graduate,professional" data-area="humanities">
+<div class="aspect-[16/10] overflow-hidden mb-8 rounded-lg relative">
+<img alt="Business" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaJSeB5vEuivog34xh6jsAF6hsiW0CcCrYXzWuoMToazoGdkrgY7XkL5CGZmjWDj6Q-HcFNBRh-kO9rJjPDz6pGviREHLCXsdhGqeo9Ssw1G7rFsYec9Fojm1ZQawYaVrFQ9rdfSdt_PygP4nS-PVFVlyG9QWEPRvGKe5TbWEzgXNf_cHGRi9wr-nB212JKrEfCHXIfhP1e_7zxMUu_VVyv6LyAKDTx4uzMAdGAvqKNS5f6StRlODDfKfiKgz-Hb6bZTjypUbyK5A6"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-headline text-3xl font-bold text-primary mb-4">The Editorial School of Business</h3>
+<p class="font-body text-on-surface-variant mb-6 leading-relaxed">Shaping ethical leaders for the global marketplace. Specializing in venture capital, international trade, and organizational psychology.</p>
+<a class="font-label text-sm font-bold uppercase tracking-widest text-secondary flex items-center gap-2 cursor-pointer" onclick="showToast('Business programs catalog coming soon')">View Programs <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="college-card group cursor-pointer" data-level="graduate" data-area="stem,humanities,arts">
+<div class="aspect-[16/10] overflow-hidden mb-8 rounded-lg relative">
+<img alt="Graduate Studies" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkwCVa_eZt6KB42Rsj3csct9YfMNS1g2sfnPdfpWDnp1hmk72wUskQIAoaU2MGyW1myMAkiuNJj5gas02lb0WwR5CVlUH8jXJTtM_U8gmjz3wNmNxidR7jeecSJPCIeGptZ1zfMat5XFSE5B487kODSNWS8bWwFtR-WniNwdHIC-ki7PBBOPWVJAQt2ipeJ2D8oKvL67LzBOi9X9BUIDcAnPfSQ7XhgVQuzy5SeKO5_ufQGDjhze5xhHuUsKSl_CK6FtktDHKredzP"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-headline text-3xl font-bold text-primary mb-4">School of Graduate Studies</h3>
+<p class="font-body text-on-surface-variant mb-6 leading-relaxed">Dedicated to masters and doctoral candidates across the arts and sciences. Fostering specialized expertise in an intimate, collaborative environment.</p>
+<a class="font-label text-sm font-bold uppercase tracking-widest text-secondary flex items-center gap-2 cursor-pointer" onclick="showToast('Graduate programs catalog coming soon')">View Programs <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+</section>
+<!-- Pull Quote -->
+<section class="max-w-screen-2xl mx-auto px-12 mb-32">
+<div class="bg-surface-container-low p-16 border-l-8 border-secondary">
+<blockquote class="font-headline text-5xl leading-tight text-primary max-w-5xl">
+"Our mission is to transcend the transactional nature of education, creating a lineage of thinkers who view the world as an endless text to be decoded."
+</blockquote>
+<cite class="block mt-8 font-label text-sm font-bold uppercase tracking-widest text-on-surface-variant">— Dr. Helena Sterling, Chancellor</cite>
+</div>
+</section>
+<!-- Research Frontiers -->
+<section class="bg-primary text-on-primary py-32">
+<div class="max-w-screen-2xl mx-auto px-12">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="font-label text-xs uppercase tracking-[0.3em] text-on-primary-container font-bold mb-4 block">Leading Innovation</span>
+<h2 class="font-headline text-5xl font-bold">Research Frontiers</h2>
+</div>
+<button onclick="showToast('Full research archive coming soon')" class="font-label text-sm font-bold uppercase tracking-widest border-b-2 border-on-primary-container pb-1 text-on-primary-container hover:text-white transition-colors">View All Breakthroughs</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="w-full md:w-48 aspect-square flex-shrink-0 bg-primary-container rounded-lg overflow-hidden">
+<img alt="Laboratory research" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQreBuMiiU0mnYFQscStkPG4jVf8y4-OQC5pO-q0pXXsgjBZJAQrBBkvmIRPmmmmXqL6NDu87T9p7xt-geaLpgi6-4rQdwDkxTF6dBeNmGpkLZlp4ico06Ac2aCbHqQjBVPfaphq45ulr6huoOf7WXUVVHTwwMN3v1jG9cgpmJEYRdt0sMVLQOA0uFWoAIv04S_ZET1cZx44mGF0m4RXcL5QJLGb2YuzQo1QTIkT8O5-n7cha3lEHG9rTX2HnltBcFnnjmpRHARMCG"/>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest bg-secondary px-2 py-1 rounded text-white mb-4 inline-block">Biosciences</span>
+<h4 class="font-headline text-2xl font-bold mb-4">Neural Regeneration Protocol</h4>
+<p class="text-on-primary-container font-body text-sm leading-relaxed mb-4">The Institute for Advanced Medicine has successfully mapped a new pathway for spinal cord regeneration using bio-compatible synthetic neurons.</p>
+<span class="text-xs font-label text-on-primary-container/60 italic">Published in Nature, March 2024</span>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="w-full md:w-48 aspect-square flex-shrink-0 bg-primary-container rounded-lg overflow-hidden">
+<img alt="Data visualization" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0wlR64XKrZpswFghgpPpTR7hTW1IHA_RVa96QdA9esEvDCr8OXDi6b59uoDOjtrFh_gRFItHtnONeqNx5j0oZgPgPMMwHBn0hRsiUbyGv4ZHrAP6avoMsSGsf2bjsGEbaEXG6iqUn4vjRAcIm0KxMmnngYE0ebOmFYJ7c0w4wqrRjQeGz9GphpqOAKpoNzmwEuVClxwGW9ZYH0D1mZK-oP5fVn88gF7shs0yn016XUQMv8t9Zq_Zem6bEP7lYYvOu3dFc4w7AMIzZ"/>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest bg-secondary px-2 py-1 rounded text-white mb-4 inline-block">Data Science</span>
+<h4 class="font-headline text-2xl font-bold mb-4">Predictive Urbanism AI</h4>
+<p class="text-on-primary-container font-body text-sm leading-relaxed mb-4">Our Global Cities Initiative unveiled an AI model capable of predicting resource strain in mega-cities up to a decade in advance with 94% accuracy.</p>
+<span class="text-xs font-label text-on-primary-container/60 italic">Presented at WEF Davos, 2024</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-50 border-t border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto gap-8">
+<div>
+<div class="font-noto-serif italic text-xl text-white mb-2">The Scholarly Editorial</div>
+<p class="font-public-sans text-xs uppercase tracking-widest text-slate-400">&copy; 2024 The Scholarly Editorial University. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-8 font-public-sans text-xs uppercase tracking-widest">
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Privacy Policy page coming soon')">Privacy Policy</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Accessibility page coming soon')">Accessibility</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Directory page coming soon')">Directory</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="navigate('admissions')">Contact</a>
+</div>
+</div>
+</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  PAGE: ADMISSIONS                                      -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-admissions" class="page">
+<main class="pt-32 pb-24">
+<!-- Hero -->
+<header class="max-w-screen-2xl mx-auto px-12 mb-24 grid grid-cols-12 gap-8 items-end">
+<div class="col-span-12 lg:col-span-7">
+<span class="font-label text-sm uppercase tracking-[0.2em] text-secondary font-bold mb-6 block">Future Starts Here</span>
+<h1 class="font-headline text-7xl font-bold text-primary leading-[1.1] mb-8 tracking-tighter">
+Join the Legacy of <span class="italic font-normal">Academic Excellence.</span>
+</h1>
+<p class="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">Navigating your future requires clarity and purpose. Our admissions process is designed to identify not just high achievers, but visionary thinkers ready to shape the next century.</p>
+</div>
+<div class="col-span-12 lg:col-span-5 relative">
+<div class="aspect-[4/5] w-full bg-surface-container-high rounded-sm overflow-hidden editorial-shadow">
+<img alt="Academic Excellence" class="w-full h-full object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByorq4gWOWTKKBtX0s1u31z6rU-412AWoyCM-3O43RLHP9C3rNxKnqj9DcHBMIp-xC6T5QngULRoAAuPl0NA8NLuKXa3kGUyK_cC1O4cVBXUna1pV4TKdHeYEgR7mrrknYLhstRh4bBMPK8kIs-Ff7Whmoc-FSHmgPZURz44nf2URfP9_zmheuj3kJ222oT2iX_oo5PnC_yY-TlgUxwONEuvcmyXdU5L1muvQwULB7adCRW9FqiO7s1qXdl4Wfxq-aRM_9syPXCBi_"/>
+</div>
+</div>
+</header>
+<!-- Admission Cycles -->
+<section class="max-w-screen-2xl mx-auto px-12 mb-32">
+<div class="grid grid-cols-12 gap-6">
+<div class="col-span-12 mb-8">
+<h2 class="font-headline text-4xl text-primary font-bold">Admission Cycles &amp; Deadlines</h2>
+</div>
+<div class="col-span-12 lg:col-span-4 p-10 bg-surface-container-low flex flex-col justify-between min-h-[400px]">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-4 block">Fall Semester</span>
+<h3 class="font-headline text-3xl font-bold mb-4 text-primary">Undergraduate</h3>
+<p class="font-body text-on-surface-variant mb-8">The primary entry point for the academic year. Competition is rigorous across all 12 colleges.</p>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="font-label text-xs uppercase text-on-surface-variant">Early Decision</span>
+<span class="font-body font-bold text-sm">Nov 01</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="font-label text-xs uppercase text-on-surface-variant">Regular Action</span>
+<span class="font-body font-bold text-sm">Jan 15</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 p-10 bg-primary text-on-primary flex flex-col justify-between min-h-[400px]">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim font-bold mb-4 block">Master &amp; PhD</span>
+<h3 class="font-headline text-3xl font-bold mb-4">Graduate Studies</h3>
+<p class="text-on-primary/70 mb-8 font-body">Specialized deadlines apply to Doctoral programs and Professional Master's degrees.</p>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-white/10 pb-2">
+<span class="font-label text-xs uppercase text-white/50">Priority Funding</span>
+<span class="font-body font-bold text-sm">Dec 15</span>
+</div>
+<div class="flex justify-between border-b border-white/10 pb-2">
+<span class="font-label text-xs uppercase text-white/50">Final Deadline</span>
+<span class="font-body font-bold text-sm">Mar 01</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 bg-surface-container flex flex-col overflow-hidden">
+<div class="h-1/2 overflow-hidden">
+<img alt="Student Community" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL7u42g_BUkU38PazJFtlX2ADtmXpT2-RjKOb2nMhrpkSLnQOqY6zl5nDuimYC-X4Ty5bBMcxLtoQLcv0vw-CYw-QGtMK5eIXZIwlOI5Es_PDrWV3jUSCfm2AxWmT48QnWyiPWXkMkQYeacbT-TzRQnzWZ25m1gi3qa06WvnnlYCnSc8l3xE73VOVoPR962478lMlJHhlydPhqEZa-LtX3MQIn2m2siRZz-PFOpisGqaQZG9np8IhXMSX2WRr-XsHQtKA8AJzYESHA"/>
+</div>
+<div class="p-10">
+<h3 class="font-headline text-2xl font-bold mb-3 text-primary">International Applicants</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">Global perspectives are the cornerstone of our research. All international students must submit TOEFL/IELTS scores by Dec 01.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pull Quote -->
+<section class="max-w-4xl mx-auto px-12 mb-32">
+<div class="bg-surface-container-low p-16 border-l-[6px] border-secondary relative">
+<span class="material-symbols-outlined absolute -top-4 -left-4 text-6xl text-secondary/10" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="font-headline text-4xl italic text-primary leading-tight">
+"We do not simply admit students; we curate a community of scholars who will redefine the boundaries of what is possible in their respective fields."
+</p>
+<cite class="mt-8 block font-label text-sm uppercase tracking-widest text-on-surface-variant not-italic font-bold">— Dr. Helena Vane, Dean of Admissions</cite>
+</div>
+</section>
+<!-- How to Apply -->
+<section class="max-w-screen-2xl mx-auto px-12 mb-32">
+<div class="mb-16">
+<h2 class="font-headline text-4xl text-primary font-bold mb-4">How to Apply</h2>
+<div class="w-24 h-1 bg-secondary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="relative">
+<span class="font-headline text-8xl font-bold text-surface-variant absolute -top-8 -left-4 -z-10 opacity-40">01</span>
+<h4 class="font-headline text-xl font-bold mb-4 mt-8">Prepare Portfolio</h4>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed">Gather transcripts, letters of recommendation, and your personal statement reflecting your academic journey.</p>
+</div>
+<div class="relative">
+<span class="font-headline text-8xl font-bold text-surface-variant absolute -top-8 -left-4 -z-10 opacity-40">02</span>
+<h4 class="font-headline text-xl font-bold mb-4 mt-8">Submit Portal</h4>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed">Complete the Editorial Common Application through our secure student portal and pay the $75 processing fee.</p>
+</div>
+<div class="relative">
+<span class="font-headline text-8xl font-bold text-surface-variant absolute -top-8 -left-4 -z-10 opacity-40">03</span>
+<h4 class="font-headline text-xl font-bold mb-4 mt-8">Interview</h4>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed">Shortlisted candidates will be invited for a virtual or in-person interview with faculty from their chosen department.</p>
+</div>
+<div class="relative">
+<span class="font-headline text-8xl font-bold text-surface-variant absolute -top-8 -left-4 -z-10 opacity-40">04</span>
+<h4 class="font-headline text-xl font-bold mb-4 mt-8">Decision</h4>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed">Admission outcomes are released via the portal. Accepted scholars must confirm their enrollment within 30 days.</p>
+</div>
+</div>
+</section>
+<!-- Financial Support -->
+<section class="bg-surface-container-low py-32 mb-32">
+<div class="max-w-screen-2xl mx-auto px-12 grid grid-cols-12 gap-16 items-center">
+<div class="col-span-12 lg:col-span-5">
+<h2 class="font-headline text-4xl text-primary font-bold mb-6">Financial Support &amp; Aid</h2>
+<p class="font-body text-on-surface-variant mb-8 leading-relaxed">We believe financial barriers should never stand in the way of brilliance. 85% of our undergraduate students receive some form of need-based or merit-based scholarship.</p>
+<div class="space-y-6">
+<div class="bg-white p-6 editorial-shadow flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">payments</span>
+<div>
+<h5 class="font-label font-bold text-primary mb-1">Merit Scholarships</h5>
+<p class="text-sm text-on-surface-variant">Automatically considered upon application based on GPA and test scores.</p>
+</div>
+</div>
+<div class="bg-white p-6 editorial-shadow flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<div>
+<h5 class="font-label font-bold text-primary mb-1">Grant Programs</h5>
+<p class="text-sm text-on-surface-variant">Federal and institutional grants that do not require repayment.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-7 bg-primary p-12 text-on-primary rounded-sm">
+<h3 class="font-headline text-2xl font-bold mb-8">Tuition Calculator</h3>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="return false">
+<div>
+<label class="font-label text-xs uppercase text-on-primary-container font-bold mb-2 block">Residency</label>
+<select id="tuition-residency" class="w-full bg-transparent border-b-2 border-on-primary-container/30 py-2 focus:border-secondary outline-none appearance-none text-white">
+<option class="bg-primary text-white">In-State Resident</option>
+<option class="bg-primary text-white" selected>Out-of-State</option>
+<option class="bg-primary text-white">International</option>
+</select>
+</div>
+<div>
+<label class="font-label text-xs uppercase text-on-primary-container font-bold mb-2 block">Housing Preference</label>
+<select id="tuition-housing" class="w-full bg-transparent border-b-2 border-on-primary-container/30 py-2 focus:border-secondary outline-none appearance-none text-white">
+<option class="bg-primary text-white">On-Campus Dormitory</option>
+<option class="bg-primary text-white">Off-Campus</option>
+<option class="bg-primary text-white">Living with Family</option>
+</select>
+</div>
+<div id="tuition-breakdown" class="md:col-span-2 space-y-2"></div>
+<div class="md:col-span-2 mt-4 flex justify-between items-end border-t border-on-primary-container/20 pt-8">
+<div>
+<span class="font-label text-xs uppercase text-on-primary-container">Estimated Annual Total</span>
+<div id="tuition-display" class="font-headline text-5xl font-bold mt-2">$45,700<span class="text-xl font-normal opacity-50 ml-2">/year</span></div>
+</div>
+<button id="tuition-recalc" class="bg-secondary text-white px-8 py-3 font-label font-bold text-sm tracking-widest hover:brightness-110 transition-all" type="button">RECALCULATE</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- FAQs -->
+<section class="max-w-4xl mx-auto px-12 mb-32">
+<h2 class="font-headline text-4xl text-primary font-bold mb-12 text-center">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<details class="group bg-surface-container-low" open="">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-headline text-lg font-bold text-primary">Is the SAT/ACT mandatory for 2024?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 font-body text-on-surface-variant leading-relaxed">
+The Scholarly Editorial has adopted a test-optional policy for the 2024 academic year. While you may submit scores, they are not a mandatory requirement for admission.
+</div>
+</details>
+<details class="group bg-surface-container-low">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-headline text-lg font-bold text-primary">Can I apply for multiple programs?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 font-body text-on-surface-variant leading-relaxed">
+Undergraduate students apply to the university as a whole but indicate a preferred major. Graduate students may apply to up to two distinct programs simultaneously.
+</div>
+</details>
+<details class="group bg-surface-container-low">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-headline text-lg font-bold text-primary">What is the faculty-to-student ratio?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 font-body text-on-surface-variant leading-relaxed">
+We maintain a rigorous 8:1 ratio, ensuring every student has direct access to mentorship and research opportunities with world-class faculty.
+</div>
+</details>
+</div>
+</section>
+<!-- Contact Form -->
+<section class="max-w-screen-2xl mx-auto px-12">
+<div class="bg-surface overflow-hidden editorial-shadow flex flex-col lg:flex-row">
+<div class="lg:w-1/3 p-12 bg-secondary text-white flex flex-col justify-between">
+<div>
+<h2 class="font-headline text-4xl font-bold mb-6">Inquire with Confidence</h2>
+<p class="font-body opacity-90 leading-relaxed mb-8">Our admissions officers are here to guide you through every step of the journey. Reach out for personal consultations or campus tours.</p>
+</div>
+<div class="space-y-4 font-label text-sm font-bold tracking-widest">
+<div class="flex items-center gap-3"><span class="material-symbols-outlined">mail</span>admissions@scholarly-editorial.edu</div>
+<div class="flex items-center gap-3"><span class="material-symbols-outlined">call</span>+1 (555) 012-3456</div>
+</div>
+</div>
+<div class="lg:w-2/3 p-12 bg-white">
+<form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="col-span-1">
+<label class="font-label text-xs uppercase text-on-surface-variant font-bold mb-2 block">First Name *</label>
+<input data-field="first-name" class="w-full border-b-2 border-outline-variant/30 py-3 focus:border-secondary outline-none transition-all" placeholder="Enter first name" type="text"/>
+</div>
+<div class="col-span-1">
+<label class="font-label text-xs uppercase text-on-surface-variant font-bold mb-2 block">Last Name *</label>
+<input data-field="last-name" class="w-full border-b-2 border-outline-variant/30 py-3 focus:border-secondary outline-none transition-all" placeholder="Enter last name" type="text"/>
+</div>
+<div class="col-span-2">
+<label class="font-label text-xs uppercase text-on-surface-variant font-bold mb-2 block">Prospective Major</label>
+<input data-field="major" class="w-full border-b-2 border-outline-variant/30 py-3 focus:border-secondary outline-none transition-all" placeholder="e.g., Comparative Literature, Physics" type="text"/>
+</div>
+<div class="col-span-2">
+<label class="font-label text-xs uppercase text-on-surface-variant font-bold mb-2 block">Your Message *</label>
+<textarea data-field="message" class="w-full border-b-2 border-outline-variant/30 py-3 focus:border-secondary outline-none transition-all resize-none" placeholder="How can we assist you today?" rows="4"></textarea>
+</div>
+<div class="col-span-2 flex justify-end">
+<button class="bg-primary text-on-primary px-12 py-4 font-label font-bold text-sm tracking-[0.2em] hover:opacity-90 transition-opacity" type="submit">SEND INQUIRY</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-50 border-t border-slate-800 mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto gap-8">
+<div>
+<div class="font-noto-serif italic text-xl text-white mb-2">The Scholarly Editorial</div>
+<p class="font-public-sans text-xs uppercase tracking-widest text-slate-400">&copy; 2024 The Scholarly Editorial University. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-8 font-public-sans text-xs uppercase tracking-widest">
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Privacy Policy page coming soon')">Privacy Policy</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Accessibility page coming soon')">Accessibility</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Directory page coming soon')">Directory</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="navigate('admissions')">Contact</a>
+</div>
+</div>
+</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  PAGE: CAMPUS LIFE                                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-campus" class="page">
+<main class="pt-[72px]">
+<!-- Hero -->
+<section class="relative h-[870px] overflow-hidden">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBCkVKpX14_Bjy1Y3m1FZDRksfafQ4OkjS5xz18wlbmNQyFY9VIikmgh2iq3oSHNy-SWDrgE8i-ayHy_PcVw_FJEcIZ0DQmiFFmdSsvOQk9HKVfLgrLV7mw-EZPSVnOXnbGRr141FbSBKfENcGeen9hnl9qMH8qnbI4j5lcWRRFSUCvfcvXBXe8nXjNBFGhNiNlQbX1WlrZXW4WZyT0doz6LQDRSFuRs_7Hv2W9TE2-9B6mXJjZJ-tj9hXjBmoDSZYU5WrwVeMWufF" alt="Campus"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-20 left-12 max-w-4xl">
+<span class="font-label text-white uppercase tracking-[0.3em] text-xs mb-4 block">Tradition &amp; Vitality</span>
+<h1 class="font-headline text-white text-7xl md:text-8xl leading-none mb-6">A Life of <br/><span class="italic">Inquiry &amp; Action.</span></h1>
+<p class="font-body text-white/90 text-xl max-w-xl leading-relaxed">Beyond the lecture hall lies a vibrant ecosystem designed to challenge your perspective, nourish your curiosity, and build lifelong bonds.</p>
+</div>
+</section>
+<!-- Pull Quote -->
+<section class="py-24 px-12 max-w-screen-xl mx-auto">
+<div class="bg-surface-container-low p-16 border-l-[6px] border-secondary">
+<blockquote class="font-headline text-primary text-4xl italic leading-tight">
+"Education is not just the filling of a pail, but the lighting of a fire. Here, the campus itself is the hearth where that flame is nurtured every single day."
+</blockquote>
+<cite class="font-label text-on-surface-variant block mt-6 uppercase tracking-widest text-sm">— Dr. Julian Thorne, Dean of Student Affairs</cite>
+</div>
+</section>
+<!-- Residential Life -->
+<section class="py-24 px-12 bg-surface">
+<div class="max-w-screen-2xl mx-auto grid grid-cols-12 gap-12 items-center">
+<div class="col-span-12 md:col-span-5 order-2 md:order-1">
+<span class="font-label text-secondary uppercase tracking-widest text-xs font-bold mb-4 block">Residential Life</span>
+<h2 class="font-headline text-5xl text-primary mb-8 leading-tight">Sanctuaries for <br/>Collaboration.</h2>
+<p class="font-body text-lg text-on-surface-variant mb-10 leading-relaxed">Our residential houses are more than dormitories. They are intellectual hubs where midnight debates turn into lifelong friendships. From the historic cloisters of North Hall to the modern sustainable suites of The Commons, you'll find a home that fits your rhythm.</p>
+<div class="flex gap-4">
+<button onclick="showToast('Housing application portal opens April 1st', 'info')" class="bg-primary text-on-primary px-8 py-3 rounded-md font-label text-sm font-semibold tracking-wide hover:opacity-90 transition-opacity">Explore Housing</button>
+<button onclick="showToast('Dining services menu & hours available soon', 'info')" class="bg-surface-container-highest text-on-surface px-8 py-3 rounded-md font-label text-sm font-semibold tracking-wide hover:bg-surface-variant transition-colors">Dining Services</button>
+</div>
+</div>
+<div class="col-span-12 md:col-span-7 order-1 md:order-2 relative">
+<div class="aspect-[4/5] w-4/5 ml-auto overflow-hidden editorial-shadow">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAliqjV45QHZiUIOaiBoPRAPcThn44aX_XUljP3vblu1Kac-NdlsN8ddbCWDjXWYNwYoPOtHIZolPo8xI0mteLIkMoKcqFMfRyI-DEeyudvkelPRFYxNENUpXx4asVw2Uq60M8YIlXhQTn_HzwyOTZ1_2ZfICjGh-1DlehLYSNlIuy-xwXQZB2W6nADTw3KrSuF9IE5_0FjxrtcYkzansgxsa9yzHFXY8UshZhsIpuAod1TQg5pV7MdEE79RKGoe2QjxmvQVql7PYzz" alt="Student Lounge"/>
+</div>
+<div class="absolute bottom-[-40px] left-0 w-2/3 aspect-video overflow-hidden editorial-shadow border-[12px] border-surface">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyB__tvATBM4LHTQHhFSedzo9yeUrYss4AGZDaomL2eeQid0bnEvIYdvwCt3XuY2WA-1Bl3MvtQpXngodHo9ADJztlg3H5aIyfmx_FvA5oH1k6xxbH4QfDDcjdVf29vVqZJyNY7Qm-2DI8LV6asZ6QuXktd7IdUZxQidjcWYKch31jErZMO8tC5GROrlqu49ocyrJiW2gG_qH6XQIfxEVdYIA4EJnqniNDiNqUn7SFNLaw_cU4S_5qxlP5b_XQ9KL3jISvwaAMB7aG" alt="Students"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Facilities -->
+<section class="py-32 px-12 bg-surface-container mt-16">
+<div class="max-w-screen-2xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-headline text-5xl text-primary mb-4">World-Class Arenas.</h2>
+<p class="font-body text-on-surface-variant text-lg leading-relaxed">Whether it's the quiet sanctity of the Rare Books Room or the high-octane energy of the Aquatic Center, our facilities are designed for excellence.</p>
+</div>
+<a class="font-label text-secondary font-bold text-sm uppercase tracking-widest border-b-2 border-secondary pb-1 cursor-pointer" onclick="showToast('Interactive campus map coming soon')">View Full Map</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[800px]">
+<div class="md:col-span-2 md:row-span-2 relative group overflow-hidden bg-primary">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoY7-jeoQ9018XmN3d8dhsleA4P8znKqURPUSPMpOYHlBLJycylTczoqCBETgJ88TfbsevfPl9bb9ASclWF9Ync-16RWRBIdMjK5Vv-jB8qmAihlsYUGKHe3rnsSjz9ruWB6vfvFa2l5mPI43Ic-ImAwlubaTm9DQY7QPa69SCTGvaOUtQguRQZeIZc0D4frbhTDDuykjqM6nkyAj-G1rXlFGhMTOZXzI8HVnFOqapFaulWETRN2num9ZTaknOeToSaPl4Ux4kKMAD" alt="Sterling Library"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent flex flex-col justify-end p-10">
+<span class="font-label text-secondary text-xs font-bold uppercase tracking-widest mb-2">Academic Core</span>
+<h3 class="font-headline text-white text-3xl mb-4">The Sterling Library</h3>
+<p class="text-white/80 font-body text-sm max-w-md">Housing over 2 million volumes and the digital archives of the next century.</p>
+</div>
+</div>
+<div class="md:col-span-2 md:row-span-1 relative group overflow-hidden bg-secondary">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcuzWpPow7S-s6Y8mhHX_sT1JFaIAYUzkjk6kyq9VSl1WDNdQQTK1-cHAD6fLq7F27UqX91hJMAXeBjze8MI-nq4ATBgIaseslZWvJRXaemB2xVw8vZR41pDYKzDMbl4rSGOw_0mzihqyNyUVe4ez7Hx0D6vcrNB0hb1CmpV1KMslf1duWvfxppsu2_QO0SJIMZfMbQDOkuSYS9qCbqZBmW6SPqrUrzKJyIkS1rXNd7PnkGDsBb24IIZJTnl7nWTp984DPseZTyNrU" alt="Field House"/>
+<div class="absolute inset-0 bg-gradient-to-r from-on-secondary-fixed/80 to-transparent flex flex-col justify-center p-10">
+<h3 class="font-headline text-white text-3xl mb-2">Field House &amp; Wellness</h3>
+<p class="text-white/80 font-body text-sm max-w-xs">Olympic-sized facilities for both competitive varsity and personal fitness goals.</p>
+</div>
+</div>
+<div class="md:col-span-1 md:row-span-1 relative group overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB18sRwnTpm-7g_v2yv658YwhkACVoazs0P2z7ZVITpwKVKIlB5NhuMRrm0rQX6ApO2U3qDJ99AjGR4TVDtf4M02UGihLDKFGhaYWytE_hYmBL1NGqjfKfxqIrsE05nFBAlHzncWX9yHy5xWhSn6tvhMIcywpDE-UBdVMdI_7OnK84h-2rOfh7MgfdNtNw5gsN3YlpnQVU9C1fhBIPzirrxTwkZBwcNlw1HJyZPKP5wgdr0Q3jKJxU-MWV5hml7AU1PqcgGZNbRxmbP" alt="Union Square"/>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
+<div class="absolute bottom-6 left-6 right-6"><h3 class="font-headline text-white text-xl">Union Square</h3></div>
+</div>
+<div class="md:col-span-1 md:row-span-1 relative group overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc7Xouv9Xh3s6yWnZahOlgKqeRF_yO_1Ds9kphMfH8UbOQhXO4u4ZzajL7XO9djR3OKRXPy3NTXyMCaA4dYGowposCf4oMcy5LyUqCogbOQgCqNriJ3ozoqKf3jfZBBqZeeTaAT_jPwj0NvIXG-cPhKvUW03rlb-6IT5D5lWcA_ZAo9U1W_UVRks2Sh2deCWmmLRh2WVuv2x_DkQyEoQRYW8aj7gQiSBdO0HNrqN9pu4nLFXaefioNZEMDqK-iSGm1f0l_8U2hkhTo" alt="Arts Pavillion"/>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
+<div class="absolute bottom-6 left-6 right-6"><h3 class="font-headline text-white text-xl">The Arts Pavillion</h3></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Student Organizations -->
+<section class="py-32 px-12 bg-surface overflow-hidden">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row gap-20">
+<div class="w-full md:w-1/3 sticky top-32 h-fit">
+<span class="font-label text-secondary uppercase tracking-widest text-xs font-bold mb-4 block">Student Organizations</span>
+<h2 class="font-headline text-5xl text-primary mb-6 leading-tight">Find Your <br/><span class="italic">Tribe.</span></h2>
+<p class="font-body text-on-surface-variant text-lg mb-8 leading-relaxed">With over 400 student-led clubs, the only limit to your experience is your curiosity. Lead a publication, join the debate union, or start a tech incubator.</p>
+<ul class="space-y-6">
+<li class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 bg-surface-container-low rounded-full flex items-center justify-center group-hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined text-secondary group-hover:text-white">theater_comedy</span>
+</div>
+<div><h4 class="font-label font-bold text-primary">Performance Arts</h4><p class="text-xs text-on-surface-variant uppercase tracking-widest">32 Active Societies</p></div>
+</li>
+<li class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 bg-surface-container-low rounded-full flex items-center justify-center group-hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined text-secondary group-hover:text-white">science</span>
+</div>
+<div><h4 class="font-label font-bold text-primary">Pre-Professional</h4><p class="text-xs text-on-surface-variant uppercase tracking-widest">58 Global Networks</p></div>
+</li>
+<li class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 bg-surface-container-low rounded-full flex items-center justify-center group-hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined text-secondary group-hover:text-white">diversity_3</span>
+</div>
+<div><h4 class="font-label font-bold text-primary">Community Impact</h4><p class="text-xs text-on-surface-variant uppercase tracking-widest">120+ Annual Projects</p></div>
+</li>
+</ul>
+</div>
+<div class="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-8 pt-20">
+<div class="bg-white p-1 shadow-sm editorial-shadow transition-transform hover:-translate-y-2">
+<img class="w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOdc-bkgmfMtfT08DKj_xyXmvFpFWTOYsLYXzgM9LNrL9cys-zwxCnxojEVrTCZImqnsm6zlKNy59rmyQlLJUg4XMdbLsQ1GF3I2NT8Vc0P5-jUS4A86xyNEx0BCs5ZGr3dybZ1b0KUyKfTVs2EtvGbMRzjBAs0MxLnNmGSs7LMsMw8AoxeOdoW3TtMIC7VlStmwKXPlsIeOnXOmPdqR5D09clgA3WJv9DdPI0GCHlJSw2-u5AT9ZWKdBzieT0pk6UShf17FwhTB1h" alt="Campus Radio"/>
+<div class="p-8"><h3 class="font-headline text-2xl mb-2">Campus Radio 90.1</h3><p class="text-on-surface-variant font-body">The voice of the student body for over 50 years.</p></div>
+</div>
+<div class="bg-white p-1 shadow-sm editorial-shadow transition-transform hover:-translate-y-2">
+<img class="w-full h-[500px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcMSTT0s0TerEphaiRaBqfXn5nOaOPmBsBkMIv_BKtKC3TYHk6wnfKlEwmfdOhmjA_Hx4MvJtmCqmP6bWkH2cunSmiXqH2mp-7rvCPbdTQyxukxq5sRvcN4zLnvcH_SmqK9_tyjpUSHQlCSCLIlJGbgi7rGmE8c7f9BO6ngaREHPvxkI9X6RdQFUBsm-p3Ao1Q0TTiN_546yEvmj0N5Fa7hM9BsjwUveQHZmBf95Xi-ZQeTKFDpfQfh-dTNAwmVxu34aC2ydTbPCEh" alt="Heritage Festival"/>
+<div class="p-8"><h3 class="font-headline text-2xl mb-2">Heritage Festival</h3><p class="text-on-surface-variant font-body">Our annual celebration of international culture and cuisine.</p></div>
+</div>
+</div>
+<div class="space-y-8">
+<div class="bg-white p-1 shadow-sm editorial-shadow transition-transform hover:-translate-y-2">
+<img class="w-full h-[450px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvJ5oxQHYpEklfCnCQQW3_M9wp7MrQE8Mwl89yertxiOyLG7KsmJcGF0bBAd_y_tofh9ZG_EWf5hIgXmbejoZSueeLyVtHuBRF1zgVk1yDF-13aJTPFTwj7qK1REBr5Zy4vVRm4L8w7B8ew3AHSKfu63ZgBjueFNdQJX4U2Ds73UmGrilmJ-_m3elD8G2gfFpKB8yWsTiPi6h6JR5vcWUBELIVyUKIuebbxsG4pRs6R1sCVElU_NadsQymgRyx2a4OGpZrkf0YBJET" alt="Oratory Society"/>
+<div class="p-8"><h3 class="font-headline text-2xl mb-2">The Oratory Society</h3><p class="text-on-surface-variant font-body">Refining the art of persuasion and civil discourse.</p></div>
+</div>
+<div class="bg-white p-1 shadow-sm editorial-shadow transition-transform hover:-translate-y-2">
+<img class="w-full h-72 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOckVvtAL_FW41UT-11Mr8hANR1FkHMxMlAjZ1fvhvvGn3GktLW5rUccRyCBZXVgn2jzpQrgtudYjaiFSN_UdqgbwQlncMIvrPes7SuLsXFgf5zxh381ok7xZuGCbzPExkwlSF7St2KHvbjaNQO8sztYMWomIKoLM4UWqSNfTFrBNZBvYbxcYuRQ3SZrK19vS2ml0F0YtLciD98-S_CiXRhw0S3XbMV8PZur_dooKqI1ihWmN_GBmk3SLzaNWFglDNUD3NBSXA20bO" alt="Robotics Lab"/>
+<div class="p-8"><h3 class="font-headline text-2xl mb-2">Robotics &amp; AI Lab</h3><p class="text-on-surface-variant font-body">Pioneering the next wave of autonomous innovation.</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="py-32 px-12 text-center bg-primary overflow-hidden relative">
+<div class="absolute inset-0 opacity-10">
+<div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-secondary-container blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-primary-container blur-[120px]"></div>
+</div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h2 class="font-headline text-white text-5xl md:text-6xl mb-8">Begin Your Chapter.</h2>
+<p class="font-body text-on-primary-container text-xl mb-12">Applications for the Fall 2025 semester are now open. Discover where your story fits into our history.</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button onclick="showToast('Campus tour scheduling available soon — check back later!', 'info')" class="bg-secondary text-white px-10 py-4 rounded-md font-label font-bold text-sm uppercase tracking-widest hover:brightness-110 transition-all">Schedule a Tour</button>
+<button onclick="navigate('admissions')" class="outline outline-1 outline-white/30 text-white px-10 py-4 rounded-md font-label font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">Request Information</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-50 border-t border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto gap-8">
+<div>
+<div class="font-noto-serif italic text-xl text-white mb-2">The Scholarly Editorial</div>
+<p class="font-public-sans text-xs uppercase tracking-widest text-slate-400">&copy; 2024 The Scholarly Editorial University. All rights reserved.</p>
+</div>
+<div class="flex gap-12 font-public-sans text-xs uppercase tracking-widest">
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Privacy Policy page coming soon')">Privacy Policy</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Accessibility page coming soon')">Accessibility</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Directory page coming soon')">Directory</a>
+<a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="navigate('admissions')">Contact</a>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors" onclick="showToast('Social links coming soon')">public</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors" onclick="showToast('Email: info@scholarly-editorial.edu', 'info')">mail</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-secondary transition-colors" onclick="showToast('Social sharing coming soon')">share</span>
+</div>
+</div>
+</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  PORTAL SIDEBAR (shown on portal + internship pages)  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<aside id="portal-sidebar" class="fixed left-0 top-0 h-full flex-col p-6 bg-slate-50 border-r border-slate-200 z-50 w-64">
+  <div class="mb-8">
+    <button onclick="navigate('home')" class="font-noto-serif text-lg font-bold text-slate-900 hover:text-secondary transition-colors">The Scholarly Editorial</button>
+    <p class="font-label text-xs font-medium text-slate-500 uppercase tracking-widest mt-1">Student Portal &middot; 2024</p>
+  </div>
+  <nav class="flex-1 space-y-1">
+    <button onclick="portalNav('portal')" data-portal-page="portal" class="portal-nav-link w-full flex items-center gap-3 text-slate-500 px-4 py-3 font-label text-sm font-medium hover:bg-slate-200 transition-colors text-left">
+      <span class="material-symbols-outlined text-xl">dashboard</span><span>Dashboard</span>
+    </button>
+    <button onclick="portalNav('portal')" class="portal-nav-link w-full flex items-center gap-3 text-slate-500 px-4 py-3 font-label text-sm font-medium hover:bg-slate-200 transition-colors text-left">
+      <span class="material-symbols-outlined text-xl">school</span><span>My Courses</span>
+    </button>
+    <button onclick="portalNav('internship-form')" data-portal-page="internship-form" class="portal-nav-link w-full flex items-center gap-3 text-slate-500 px-4 py-3 font-label text-sm font-medium hover:bg-slate-200 transition-colors text-left">
+      <span class="material-symbols-outlined text-xl">work</span><span>Internships</span>
+    </button>
+    <button onclick="portalNav('portal')" class="portal-nav-link w-full flex items-center gap-3 text-slate-500 px-4 py-3 font-label text-sm font-medium hover:bg-slate-200 transition-colors text-left">
+      <span class="material-symbols-outlined text-xl">menu_book</span><span>Library</span>
+    </button>
+  </nav>
+  <div class="mt-auto pt-6 border-t border-slate-200 flex items-center gap-3">
+    <img alt="Student" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmvYzY0PQWAw0XEyBHp13EfeKVXTluKAcIwYGBgvODelw61RyowvoVNPUwlD6MHMvfXMlk94WwmMPdXcIoxjhbv6th3L_07gkyhxHJNUgKtzoS0_5LCWQm7Y5xs5xhPIJVkyLYcb9A0mx_it4aaGB8oWLTeeivSXo_22ocYDybXgUMJb3WHt9RutqgdKXMjAUFI53THVlXpPRK7c0HTi9te5dBtiU2ZndTRVEDwMoOxpO2peXqVbO1RP2IA3QrpCqlYqn1emZRG4si"/>
+    <div class="overflow-hidden">
+      <p class="text-sm font-bold truncate text-slate-900 student-name">Julian Thorne</p>
+      <p class="text-xs text-on-surface-variant truncate">ID: 2024-8842</p>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  PAGE: STUDENT PORTAL / DASHBOARD                      -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-portal" class="page">
+<!-- Portal Top Bar -->
+<header class="sticky top-0 w-full z-40 bg-white/80 backdrop-blur-md flex justify-between items-center px-12 py-5 border-b border-slate-200/20">
+  <span class="font-label text-xs font-bold uppercase tracking-[0.2em] text-secondary">The Scholarly Editorial</span>
+  <div class="flex items-center gap-6">
+    <div class="relative">
+      <button onclick="toggleNotifications(this)" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">notifications</button>
+      <span class="notif-badge absolute -top-1 -right-1 w-2 h-2 bg-secondary rounded-full"></span>
+      <div class="notif-dropdown"></div>
+    </div>
+    <button onclick="portalNav('internship-form')" class="bg-primary text-on-primary px-6 py-2 rounded-md font-label text-sm font-semibold tracking-tight hover:opacity-90 transition-opacity">Quick Apply</button>
+  </div>
+</header>
+<div class="px-12 py-12 max-w-7xl">
+  <!-- Welcome Hero -->
+  <section class="mb-16">
+    <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-3">Welcome Back, Julian</p>
+    <h2 class="font-headline text-5xl font-bold text-primary tracking-tight max-w-3xl leading-tight">
+      The pursuit of knowledge is a lifelong archive of the soul.
+    </h2>
+  </section>
+  <!-- Bento Grid -->
+  <div class="grid grid-cols-12 gap-8">
+    <!-- Academic Milestones -->
+    <div class="col-span-12 lg:col-span-8 bg-surface-container-low rounded-xl p-8 flex flex-col justify-between">
+      <div>
+        <h3 class="font-headline text-2xl font-semibold mb-6">Academic Milestones</h3>
+        <div class="grid grid-cols-3 gap-8">
+          <div class="editorial-accent pl-6 py-2">
+            <span class="block font-label text-xs text-on-surface-variant uppercase mb-1">Status</span>
+            <span class="block font-headline text-lg italic">Senior Year</span>
+          </div>
+          <div class="editorial-accent pl-6 py-2">
+            <span class="block font-label text-xs text-on-surface-variant uppercase mb-1">Remaining</span>
+            <span class="block font-headline text-lg italic">2 Semesters</span>
+          </div>
+          <div class="editorial-accent pl-6 py-2">
+            <span class="block font-label text-xs text-on-surface-variant uppercase mb-1">Credits</span>
+            <span class="block font-headline text-lg italic">102 / 120</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12">
+        <div class="h-2 bg-surface-variant rounded-full overflow-hidden">
+          <div class="h-full bg-secondary rounded-full" style="width:85%"></div>
+        </div>
+        <p class="mt-4 font-label text-[10px] uppercase tracking-tighter text-on-surface-variant">Degree Completion Progress: 85%</p>
+      </div>
+    </div>
+    <!-- Finance Status -->
+    <div class="col-span-12 lg:col-span-4 bg-primary text-on-primary rounded-xl p-8 relative overflow-hidden">
+      <div class="relative z-10">
+        <h3 class="font-headline text-xl font-semibold mb-8">Billing &amp; Finance</h3>
+        <div class="space-y-4 mb-8">
+          <div>
+            <p class="font-label text-xs text-on-primary-container uppercase mb-1">Outstanding Balance</p>
+            <p class="text-4xl font-headline font-bold billing-balance">$1,240.00</p>
+          </div>
+          <div class="border-t border-white/10 pt-4 billing-items space-y-2">
+            <div class="flex justify-between text-sm">
+              <span class="text-on-primary-container font-label text-xs uppercase">Tuition Due</span>
+              <span class="font-bold">Apr 15</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-on-primary-container font-label text-xs uppercase">Housing Fee</span>
+              <span class="font-bold">May 01</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-on-primary-container font-label text-xs uppercase">Library Fine</span>
+              <span class="font-bold">Due Now</span>
+            </div>
+          </div>
+        </div>
+        <button onclick="settleFees()" class="settle-btn w-full bg-secondary text-white py-3 rounded-md font-label text-sm font-bold uppercase tracking-widest hover:brightness-110 transition-all">Settle Fees</button>
+      </div>
+      <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+        <span class="material-symbols-outlined text-[160px]">account_balance</span>
+      </div>
+    </div>
+    <!-- Internship Opportunities -->
+    <div class="col-span-12 lg:col-span-7 bg-white rounded-xl p-8 shadow-sm">
+      <div class="flex justify-between items-end mb-8">
+        <h3 class="font-headline text-2xl font-semibold">Internship Opportunities</h3>
+        <button onclick="portalNav('internship-form')" class="font-label text-xs text-secondary font-bold uppercase border-b-2 border-secondary pb-1 hover:text-secondary/70 transition-colors">View All Registry</button>
+      </div>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-4 bg-surface-container-low/50 hover:bg-surface-container rounded-lg transition-colors group">
+          <div class="flex items-center gap-5">
+            <div class="w-12 h-12 bg-white flex items-center justify-center rounded-md border border-outline-variant/20 shrink-0">
+              <span class="material-symbols-outlined text-primary">history_edu</span>
+            </div>
+            <div>
+              <p class="font-headline text-lg leading-none mb-1">Junior Editorial Fellow</p>
+              <p class="font-label text-xs text-on-surface-variant">London Literary Gazette &middot; Remote</p>
+            </div>
+          </div>
+          <button onclick="portalNav('internship-form')" class="shrink-0 bg-surface-container-highest text-on-surface px-5 py-2 rounded-md font-label text-xs font-bold uppercase hover:bg-primary hover:text-on-primary transition-all">Apply Now</button>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-surface-container-low/50 hover:bg-surface-container rounded-lg transition-colors group">
+          <div class="flex items-center gap-5">
+            <div class="w-12 h-12 bg-white flex items-center justify-center rounded-md border border-outline-variant/20 shrink-0">
+              <span class="material-symbols-outlined text-primary">data_exploration</span>
+            </div>
+            <div>
+              <p class="font-headline text-lg leading-none mb-1">Archival Research Assistant</p>
+              <p class="font-label text-xs text-on-surface-variant">The National Archive &middot; On-site</p>
+            </div>
+          </div>
+          <button onclick="portalNav('internship-form')" class="shrink-0 bg-surface-container-highest text-on-surface px-5 py-2 rounded-md font-label text-xs font-bold uppercase hover:bg-primary hover:text-on-primary transition-all">Apply Now</button>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-surface-container-low/50 hover:bg-surface-container rounded-lg transition-colors group">
+          <div class="flex items-center gap-5">
+            <div class="w-12 h-12 bg-white flex items-center justify-center rounded-md border border-outline-variant/20 shrink-0">
+              <span class="material-symbols-outlined text-primary">architecture</span>
+            </div>
+            <div>
+              <p class="font-headline text-lg leading-none mb-1">Historical Restoration Liaison</p>
+              <p class="font-label text-xs text-on-surface-variant">Cambridge Heritage Trust &middot; Hybrid</p>
+            </div>
+          </div>
+          <button onclick="portalNav('internship-form')" class="shrink-0 bg-surface-container-highest text-on-surface px-5 py-2 rounded-md font-label text-xs font-bold uppercase hover:bg-primary hover:text-on-primary transition-all">Apply Now</button>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-surface-container-low/50 hover:bg-surface-container rounded-lg transition-colors group">
+          <div class="flex items-center gap-5">
+            <div class="w-12 h-12 bg-white flex items-center justify-center rounded-md border border-outline-variant/20 shrink-0">
+              <span class="material-symbols-outlined text-primary">engineering</span>
+            </div>
+            <div>
+              <p class="font-headline text-lg leading-none mb-1">Junior Software Engineer</p>
+              <p class="font-label text-xs text-on-surface-variant">Google &middot; External Partnership &middot; Remote</p>
+            </div>
+          </div>
+          <button onclick="portalNav('internship-form')" class="shrink-0 bg-surface-container-highest text-on-surface px-5 py-2 rounded-md font-label text-xs font-bold uppercase hover:bg-primary hover:text-on-primary transition-all">Apply Now</button>
+        </div>
+      </div>
+    </div>
+    <!-- Campus Gazette -->
+    <div class="col-span-12 lg:col-span-5 bg-surface-container rounded-xl overflow-hidden flex flex-col">
+      <div class="h-48 overflow-hidden">
+        <img alt="Campus Architecture" class="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIy63JHr40WGLXf-0KzSb-PwK__RjtLh1PTqzJ2EaS5QpFTaNFXgaA09nJowbkjeP73tW6C4szzPk1GLEtBFzLkGJEnGBFbj-GWzkyJuoLmIHXsqc7sJnL9v_UBMO8feCt0CbtMgMsS8MuWUR-_lbFW4X5DuIOnMtY0FQb7HuJdUcWTQ1BjIqBpqs_M359lriDCjF0rKFlDN4guZSs8Gti_crB0wMWbylD4E_iO7oIfm-Z0JdUyzBA8RlIeLWUkFy6PvP0S3JBm2jG"/>
+      </div>
+      <div class="p-8 flex-1">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-2 h-2 bg-secondary rounded-full"></span>
+          <span class="font-label text-[10px] uppercase font-bold tracking-widest text-on-surface-variant">Campus Gazette &middot; Latest</span>
+        </div>
+        <h4 class="font-headline text-2xl font-bold text-primary mb-4 leading-tight">New Archives Wing to Open this September</h4>
+        <p class="text-sm text-on-surface-variant leading-relaxed mb-6">The university committee has finalized the blueprints for the 'Luminous Archives,' a modern extension to the central library focused on digital heritage...</p>
+        <div class="pt-4 border-t border-outline-variant/30 flex items-center justify-between">
+          <span class="font-label text-[10px] text-on-surface-variant">April 14, 2024</span>
+          <a class="font-label text-xs font-bold text-primary hover:text-secondary flex items-center gap-1 transition-colors cursor-pointer" onclick="showToast('Full article page coming soon')">Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Scholar's Pull-Quote -->
+  <section class="mt-16 mb-8 py-12 px-12 bg-surface-container-low editorial-accent">
+    <blockquote class="font-headline text-3xl text-primary leading-tight italic max-w-4xl">
+      "Education is not the learning of facts, but the training of the mind to think."
+    </blockquote>
+    <cite class="block mt-6 font-label text-sm uppercase tracking-widest text-secondary">— Albert Einstein, Editorial Archives 1921</cite>
+  </section>
+</div>
+<!-- Portal Footer -->
+<footer class="bg-slate-900 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center px-12 py-12 gap-6">
+  <div>
+    <h2 class="font-noto-serif italic text-xl text-white">The Scholarly Editorial</h2>
+    <p class="font-public-sans text-[10px] uppercase tracking-widest text-slate-500 mt-1">&copy; 2024 The Scholarly Editorial University. All rights reserved.</p>
+  </div>
+  <div class="flex gap-8 font-public-sans text-xs uppercase tracking-widest">
+    <a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Privacy Policy page coming soon')">Privacy Policy</a>
+    <a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Accessibility page coming soon')">Accessibility</a>
+    <a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="showToast('Directory page coming soon')">Directory</a>
+    <a class="text-slate-400 hover:text-white transition-colors cursor-pointer" onclick="navigate('admissions')">Contact</a>
+  </div>
+</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  PAGE: INTERNSHIP APPLICATION FORM                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="page-internship-form" class="page">
+<!-- Portal Top Bar -->
+<header class="sticky top-0 w-full z-40 bg-white/80 backdrop-blur-md flex justify-between items-center px-12 py-5 border-b border-slate-200/20">
+  <div class="flex items-center gap-3">
+    <button onclick="portalNav('portal')" class="flex items-center gap-2 font-label text-xs text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">
+      <span class="material-symbols-outlined text-base">arrow_back</span> Back to Dashboard
+    </button>
+  </div>
+  <span class="font-label text-xs font-bold uppercase tracking-[0.2em] text-secondary">The Scholarly Editorial</span>
+  <div class="flex items-center gap-4">
+    <div class="relative">
+      <button onclick="toggleNotifications(this)" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">notifications</button>
+      <span class="notif-badge absolute -top-1 -right-1 w-2 h-2 bg-secondary rounded-full"></span>
+      <div class="notif-dropdown"></div>
+    </div>
+  </div>
+</header>
+<main class="pt-16 pb-32 px-12 max-w-screen-xl mx-auto">
+  <!-- Hero -->
+  <div class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-12">
+    <div class="max-w-2xl">
+      <span class="font-label text-secondary font-bold text-xs uppercase tracking-widest mb-4 block">Career Opportunities</span>
+      <h1 class="font-headline text-5xl md:text-6xl text-primary font-bold tracking-tight leading-tight">
+        Junior Software Engineer <span class="text-secondary italic">at Google</span>
+      </h1>
+      <p class="mt-8 text-lg text-on-surface-variant leading-relaxed max-w-xl">
+        Embark on a transformative journey with the Google Engineering team. This application serves as your digital portfolio to demonstrate your technical acumen and scholarly potential.
+      </p>
+    </div>
+    <div class="hidden lg:block shrink-0">
+      <div class="w-44 h-44 bg-primary-container relative rotate-2 overflow-hidden rounded-xl shadow-xl">
+        <img class="object-cover h-full w-full opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAshB6TH6KNkFEiph8rNyHq9B3wS9_HRI-9vkTEtYUD8J4A8TR0mHP-QCHgcImSztWVy81dtsxXUFJPu6B3CJipjkRWTTnGGG-KyzRx98zS5Jhg_j8Us3ZxCnNZtTp553CWZV5kRKn-N_atV38MgRvQPMo_9SrACJrTdqTnte2jF5FmmTW-xxT0ACNsU4eG6EAiIUQ0IcO6uqa624I4XaMG5HeJwpC-53Fbf_zr7l_L95aNAbCDtq0B5vVGT7o3aMcSfkqeAljpqRqU" alt="Office"/>
+      </div>
+    </div>
+  </div>
+  <!-- 2-column editorial grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+    <!-- Left Context Sidebar -->
+    <aside class="lg:col-span-4 space-y-10">
+      <div class="space-y-4">
+        <h2 class="font-headline text-3xl font-bold leading-tight text-primary">Internship Application</h2>
+        <p class="font-body text-on-surface-variant leading-relaxed">
+          Position: Junior Software Engineer<br/>
+          Institution: Google (External Partnership)<br/>
+          Term: Summer 2024
+        </p>
+      </div>
+      <!-- Scholar's Pull-Quote -->
+      <div class="bg-surface-container-low border-l-4 border-secondary p-8">
+        <blockquote class="font-headline text-2xl italic text-primary leading-snug">
+          "The best way to predict the future is to invent it."
+        </blockquote>
+        <cite class="block mt-4 font-label text-xs uppercase tracking-widest font-bold text-on-surface-variant">— Alan Kay</cite>
+      </div>
+      <!-- Guidelines -->
+      <div class="p-8 bg-surface-container-low rounded-xl space-y-2">
+        <h3 class="font-headline text-lg font-bold text-primary mb-4">Submission Guidelines</h3>
+        <ul class="space-y-4 text-sm text-on-surface-variant">
+          <li class="flex gap-3"><span class="text-secondary font-bold shrink-0">01.</span>Ensure your Resume is in PDF format for consistent archival rendering.</li>
+          <li class="flex gap-3"><span class="text-secondary font-bold shrink-0">02.</span>Academic transcripts must reflect the current term.</li>
+          <li class="flex gap-3"><span class="text-secondary font-bold shrink-0">03.</span>Cover letter should address your contribution to the 'Living Archive' of software.</li>
+        </ul>
+      </div>
+      <!-- Info chips -->
+      <div class="space-y-4">
+        <div class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-secondary shrink-0" style="font-variation-settings: 'FILL' 1;">schedule</span>
+          <div><p class="font-label text-sm font-bold text-primary">Application Deadline</p><p class="font-body text-sm text-on-surface-variant">March 15th, 2024 &middot; 11:59 PM EST</p></div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-secondary shrink-0" style="font-variation-settings: 'FILL' 1;">verified</span>
+          <div><p class="font-label text-sm font-bold text-primary">Identity Verified</p><p class="font-body text-sm text-on-surface-variant">Student Portal Auth Active</p></div>
+        </div>
+      </div>
+      <img class="w-full h-52 object-cover rounded-md shadow-sm brightness-90 grayscale-[0.2]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdjyYA4txf83Y_t12-Pk0fdKk_adk0MSO4FZfk7ylurNhO3Tkov9soKCuml11_s3bXOmASEyM1_45uUwrOoNkLBKCJcwxiZtLOzTLyjqTleQUy1YFiMsqJGvlYXDzo2X7WqLDma3mGQETG3USyk2kxwyQxRoKyFtHjtnFyW2SaRHFbFPWTc3alHbvnPZu1FKDGtHH25TIE1WuVKzgzMNV37E8ZLjac8xAMIy-IOyeeFQ9gNSzj5wGa2-hE1Xic9S0JNW2i1tGf4Ad3" alt="University Library"/>
+    </aside>
+    <!-- Main Form -->
+    <form id="internship-form" class="lg:col-span-8 space-y-20">
+      <!-- 01 Personal Identity -->
+      <section class="space-y-10">
+        <div class="flex items-center gap-4">
+          <span class="font-headline text-3xl text-outline-variant/40 italic">01</span>
+          <h2 class="font-headline text-2xl font-bold text-primary border-b border-outline-variant/30 pb-2 flex-grow">Personal Identity</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-x-12 gap-y-10">
+          <div class="flex flex-col space-y-2">
+            <label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">Full Legal Name *</label>
+            <input data-field="full-name" class="bg-transparent border-0 border-b-2 border-outline-variant py-2 font-body text-lg focus:border-secondary transition-colors placeholder:text-outline-variant" placeholder="Julian Thorne" type="text"/>
+          </div>
+          <div class="flex flex-col space-y-2">
+            <label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">Student Identification *</label>
+            <input data-field="student-id" class="bg-transparent border-0 border-b-2 border-outline-variant py-2 font-body text-lg focus:border-secondary transition-colors placeholder:text-outline-variant" placeholder="ID #2024-8842" type="text"/>
+          </div>
+          <div class="flex flex-col space-y-2 col-span-2">
+            <label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">University Email Address *</label>
+            <input data-field="email" class="bg-transparent border-0 border-b-2 border-outline-variant py-2 font-body text-lg focus:border-secondary transition-colors placeholder:text-outline-variant" placeholder="j.thorne@scholarly.edu" type="email"/>
+          </div>
+        </div>
+      </section>
+      <!-- 02 Academic Excellence -->
+      <section class="space-y-10">
+        <div class="flex items-center gap-4">
+          <span class="font-headline text-3xl text-outline-variant/40 italic">02</span>
+          <h2 class="font-headline text-2xl font-bold text-primary border-b border-outline-variant/30 pb-2 flex-grow">Academic Excellence</h2>
+        </div>
+        <div class="grid grid-cols-3 gap-x-8 gap-y-10">
+          <div class="flex flex-col space-y-2 col-span-2">
+            <label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">Academic Major *</label>
+            <input data-field="major" class="bg-transparent border-0 border-b-2 border-outline-variant py-2 font-body text-lg focus:border-secondary transition-colors placeholder:text-outline-variant" placeholder="Computer Science &amp; Mathematics" type="text"/>
+          </div>
+          <div class="flex flex-col space-y-2">
+            <label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">Cumulative GPA</label>
+            <input data-field="gpa" class="bg-transparent border-0 border-b-2 border-outline-variant py-2 font-body text-lg focus:border-secondary transition-colors placeholder:text-outline-variant" placeholder="3.95 / 4.0" type="text"/>
+          </div>
+          <div class="flex flex-col space-y-2 col-span-3">
+            <label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">Expected Graduation</label>
+            <div class="flex items-center gap-4">
+              <input data-field="graduation" class="bg-transparent border-0 border-b-2 border-outline-variant py-2 font-body text-lg focus:border-secondary transition-colors flex-grow" type="month"/>
+              <span class="font-body text-on-surface-variant italic text-sm shrink-0">Spring Term 2025</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 03 Curated Works -->
+      <section class="space-y-10">
+        <div class="flex items-center gap-4">
+          <span class="font-headline text-3xl text-outline-variant/40 italic">03</span>
+          <h2 class="font-headline text-2xl font-bold text-primary border-b border-outline-variant/30 pb-2 flex-grow">Curated Works</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-y-8">
+          <div class="file-upload-zone group relative flex flex-col p-8 bg-surface-container-lowest border-2 border-dashed border-outline-variant hover:border-secondary transition-colors rounded-lg cursor-pointer">
+            <input type="file" accept=".pdf,.doc,.docx" />
+            <div class="file-placeholder flex items-center justify-between">
+              <div class="flex items-center gap-6">
+                <span class="material-symbols-outlined text-4xl text-outline-variant group-hover:text-secondary transition-colors" style="font-variation-settings: 'wght' 300;">upload_file</span>
+                <div>
+                  <p class="font-label text-sm font-bold text-primary">Upload Curated Resume / CV</p>
+                  <p class="font-body text-xs text-on-surface-variant">PDF format preferred &middot; Max size 10MB</p>
+                </div>
+              </div>
+              <span class="font-label text-xs font-bold text-secondary tracking-widest uppercase">Select File</span>
+            </div>
+            <div class="file-info"></div>
+          </div>
+          <div class="flex flex-col space-y-2">
+            <label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">Digital Portfolio / GitHub Link</label>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-outline-variant" style="font-variation-settings: 'opsz' 20;">link</span>
+              <input data-field="portfolio" class="bg-transparent border-0 border-b-2 border-outline-variant py-2 font-body text-lg focus:border-secondary transition-colors placeholder:text-outline-variant flex-grow" placeholder="https://github.com/scholar-profile" type="url"/>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 04 Personal Narrative -->
+      <section class="space-y-10">
+        <div class="flex items-center gap-4">
+          <span class="font-headline text-3xl text-outline-variant/40 italic">04</span>
+          <h2 class="font-headline text-2xl font-bold text-primary border-b border-outline-variant/30 pb-2 flex-grow">Personal Narrative</h2>
+        </div>
+        <div class="flex flex-col space-y-4">
+          <label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold">Statement of Intent &amp; Cover Letter *</label>
+          <textarea data-field="statement" class="bg-surface-container-low border-b-2 border-outline-variant p-6 font-body text-lg focus:border-secondary transition-colors placeholder:text-outline-variant/60 leading-relaxed rounded-t-lg" placeholder="Compose your story here. Describe how your intellectual curiosity aligns with the engineering challenges at Google, and how your academic work translates to professional contribution..." rows="8"></textarea>
+          <p class="font-body text-xs text-on-surface-variant text-right italic">Recommended length: 500&ndash;800 words</p>
+        </div>
+      </section>
+      <!-- Submit -->
+      <div class="pt-8 flex justify-between items-center gap-12 border-t border-outline-variant/15">
+        <p class="text-xs text-on-surface-variant italic max-w-xs">By submitting, you attest to the academic integrity of the provided records.</p>
+        <div class="flex items-center gap-6">
+          <button onclick="saveDraft()" class="font-label text-sm uppercase tracking-widest text-on-surface-variant font-bold hover:text-primary transition-colors" type="button">Save Draft</button>
+          <button class="bg-primary text-on-primary px-12 py-4 rounded-md font-label font-bold text-sm tracking-[0.1em] hover:bg-primary-container transition-all shadow-md flex items-center gap-3" type="submit">
+            Finalize Submission <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container text-on-surface-variant py-16 px-12">
+  <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+    <div>
+      <h4 class="font-noto-serif text-xl font-bold text-primary mb-3">The Scholarly Editorial</h4>
+      <p class="text-sm max-w-xs opacity-60">The official digital archive and application portal for elite academic opportunities.</p>
+    </div>
+    <div class="grid grid-cols-2 gap-12">
+      <div class="flex flex-col gap-2">
+        <span class="font-label text-[10px] font-bold uppercase tracking-widest opacity-40">Privacy</span>
+        <a class="text-sm hover:text-secondary transition-colors cursor-pointer" onclick="showToast('Data Policy page coming soon')">Data Policy</a>
+        <a class="text-sm hover:text-secondary transition-colors cursor-pointer" onclick="showToast('Accessibility page coming soon')">Accessibility</a>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="font-label text-[10px] font-bold uppercase tracking-widest opacity-40">Support</span>
+        <a class="text-sm hover:text-secondary transition-colors cursor-pointer" onclick="navigate('admissions')">Admissions Desk</a>
+        <a class="text-sm hover:text-secondary transition-colors cursor-pointer" onclick="showToast('Technical support: support@scholarly-editorial.edu', 'info')">Technical Help</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  UI OVERLAYS                                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<!-- Search Overlay -->
+<div id="search-overlay" onclick="if(event.target===this)toggleSearch()">
+  <div class="search-box">
+    <div class="relative">
+      <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size:1.5rem">search</span>
+      <input class="search-input" placeholder="Search pages, programs, topics..." type="text"/>
+      <kbd class="absolute right-4 top-1/2 -translate-y-1/2 font-label text-xs text-outline bg-surface-container px-2 py-1 rounded">ESC</kbd>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<!-- Modal Overlay -->
+<div id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box"></div>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <button onclick="toggleMobileMenu()" class="absolute top-6 right-6" style="font-size:2rem">
+    <span class="material-symbols-outlined text-white text-3xl">close</span>
+  </button>
+  <button onclick="navigate('home');toggleMobileMenu()">Home</button>
+  <button onclick="navigate('academics');toggleMobileMenu()">Academics</button>
+  <button onclick="navigate('admissions');toggleMobileMenu()">Admissions</button>
+  <button onclick="navigate('about');toggleMobileMenu()">About</button>
+  <button onclick="navigate('campus');toggleMobileMenu()">Campus Life</button>
+  <button onclick="navigate('portal');toggleMobileMenu()">Student Portal</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SCRIPTS                                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- Supabase (optional — falls back to localStorage if not configured) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/db.js"></script>
+<script src="js/router.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
