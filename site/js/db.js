@@ -47,7 +47,7 @@ const DB = (function () {
     }
     // Fallback: localStorage
     console.log('%c⚡ Using localStorage fallback', 'color:#f59e0b;font-weight:bold');
-    _localInit();
+    await _localInit();
   }
 
   /* ══════════════════════════════════════════════════════

@@ -46,9 +46,9 @@
 /* ── Refresh portal dashboard from DB ─────────────────── */
 async function refreshPortalData() {
   // Update balance
-  const balance = await DB.getOutstandingBalance();
+  const balance = await DB.getOutstandingBalance() || 0;
   const balanceEl = document.querySelector('#page-portal .billing-balance');
-  if (balanceEl) balanceEl.textContent = `$${balance.toFixed(2)}`;
+  if (balanceEl) balanceEl.textContent = `$${Number(balance).toFixed(2)}`;
 
   // Update fee items
   const fees = (await DB.getFees()).filter(f => f.status !== 'paid');
