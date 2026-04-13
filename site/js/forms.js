@@ -291,7 +291,7 @@ function initTuitionCalculator() {
     const breakdown = document.getElementById('tuition-breakdown');
     if (breakdown) {
       breakdown.innerHTML = `
-        <div class="flex justify-between text-sm"><span class="text-on-primary-container font-label text-xs uppercase">Tuition (${result.modality})</span><span>$${result.tuition.toLocaleString()}</span></div>
+        <div class="flex justify-between text-sm"><span class="text-on-primary-container font-label text-xs uppercase">Tuition (${isOnline ? 'Online' : 'In-Person'})</span><span>$${result.tuition.toLocaleString()}</span></div>
         <div class="flex justify-between text-sm"><span class="text-on-primary-container font-label text-xs uppercase">Fees</span><span>$${result.fees.toLocaleString()}</span></div>
         ${result.housing > 0 ? `<div class="flex justify-between text-sm"><span class="text-on-primary-container font-label text-xs uppercase">Housing</span><span>$${result.housing.toLocaleString()}</span></div>` : ''}
         ${isOnline ? `<div class="text-xs text-on-primary-container/60 italic mt-2">Online students are not charged housing fees.</div>` : ''}
