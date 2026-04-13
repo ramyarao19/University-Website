@@ -728,14 +728,24 @@ Join the Legacy of <span class="italic font-normal">Academic Excellence.</span>
 <div>
 <label class="font-label text-xs uppercase text-on-primary-container font-bold mb-2 block">Residency</label>
 <select id="tuition-residency" class="w-full bg-transparent border-b-2 border-on-primary-container/30 py-2 focus:border-secondary outline-none appearance-none text-white">
+<option class="bg-primary text-white" value="" selected disabled>Select Residency</option>
 <option class="bg-primary text-white">In-State Resident</option>
-<option class="bg-primary text-white" selected>Out-of-State</option>
+<option class="bg-primary text-white">Out-of-State</option>
 <option class="bg-primary text-white">International</option>
+</select>
+</div>
+<div>
+<label class="font-label text-xs uppercase text-on-primary-container font-bold mb-2 block">Course Mode</label>
+<select id="tuition-modality" class="w-full bg-transparent border-b-2 border-on-primary-container/30 py-2 focus:border-secondary outline-none appearance-none text-white">
+<option class="bg-primary text-white" value="" selected disabled>Select Mode</option>
+<option class="bg-primary text-white">In-Person</option>
+<option class="bg-primary text-white">Online</option>
 </select>
 </div>
 <div>
 <label class="font-label text-xs uppercase text-on-primary-container font-bold mb-2 block">Housing Preference</label>
 <select id="tuition-housing" class="w-full bg-transparent border-b-2 border-on-primary-container/30 py-2 focus:border-secondary outline-none appearance-none text-white">
+<option class="bg-primary text-white" value="" selected disabled>Select Housing</option>
 <option class="bg-primary text-white">On-Campus Dormitory</option>
 <option class="bg-primary text-white">Off-Campus</option>
 <option class="bg-primary text-white">Living with Family</option>
@@ -745,9 +755,9 @@ Join the Legacy of <span class="italic font-normal">Academic Excellence.</span>
 <div class="md:col-span-2 mt-4 flex justify-between items-end border-t border-on-primary-container/20 pt-8">
 <div>
 <span class="font-label text-xs uppercase text-on-primary-container">Estimated Annual Total</span>
-<div id="tuition-display" class="font-headline text-5xl font-bold mt-2">$45,700<span class="text-xl font-normal opacity-50 ml-2">/year</span></div>
+<div id="tuition-display" class="font-headline text-5xl font-bold mt-2">$0<span class="text-xl font-normal opacity-50 ml-2">/year</span></div>
 </div>
-<button id="tuition-recalc" class="bg-secondary text-white px-8 py-3 font-label font-bold text-sm tracking-widest hover:brightness-110 transition-all" type="button">RECALCULATE</button>
+<button id="tuition-recalc" class="bg-secondary text-white px-8 py-3 font-label font-bold text-sm tracking-widest hover:brightness-110 transition-all" type="button">CALCULATE</button>
 </div>
 </form>
 </div>

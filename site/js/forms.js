@@ -246,39 +246,90 @@ function removeFile(btn) {
 /* ── Tuition Calculator ───────────────────────────────── */
 function initTuitionCalculator() {
   const residencySelect = document.getElementById('tuition-residency');
+  const modalitySelect  = document.getElementById('tuition-modality');
   const housingSelect   = document.getElementById('tuition-housing');
   const display         = document.getElementById('tuition-display');
   const recalcBtn       = document.getElementById('tuition-recalc');
-  if (!residencySelect || !housingSelect || !display) return;
+  if (!residencySelect || !modalitySelect || !housingSelect || !display) return;
+
+  function updateHousingState() {
+    const isOnline = modalitySelect.value === 'Online';
+    housingSelect.disabled = isOnline;
+    if (isOnline) {
+      housingSelect.selectedIndex = 0;
+      housingSelect.style.opacity = '0.4';
+      housingSelect.style.cursor = 'not-allowed';
+    } else {
+      housingSelect.style.opacity = '1';
+      housingSelect.style.cursor = '';
+    }
+  }
 
   function calculate() {
     const residencyMap = { 'In-State Resident': 'in_state', 'Out-of-State': 'out_of_state', 'International': 'international' };
     const housingMap   = { 'On-Campus Dormitory': 'on_campus', 'Off-Campus': 'off_campus', 'Living with Family': 'family' };
+    const modalityMap  = { 'In-Person': 'in_person', 'Online': 'online' };
+
+    const isOnline = modalitySelect.value === 'Online';
+
+    // If required dropdowns are still on placeholder, show $0
+    // Online doesn't require housing; in-person requires all three
+    if (!residencySelect.value || !modalitySelect.value || (!isOnline && !housingSelect.value)) {
+      display.innerHTML = `$0<span class="text-xl font-normal opacity-50 ml-2">/year</span>`;
+      const breakdown = document.getElementById('tuition-breakdown');
+      if (breakdown) breakdown.innerHTML = '';
+      return;
+    }
+
     const r = residencyMap[residencySelect.value] || 'out_of_state';
     const h = housingMap[housingSelect.value] || 'on_campus';
-    const result = DB.calculateTuition(r, h);
+    const m = modalityMap[modalitySelect.value] || 'in_person';
+    const result = DB.calculateTuition(r, h, m);
     display.innerHTML = `$${result.total.toLocaleString()}<span class="text-xl font-normal opacity-50 ml-2">/year</span>`;
 
-    // Update breakdown if it exists
+    // Update breakdown
     const breakdown = document.getElementById('tuition-breakdown');
     if (breakdown) {
       breakdown.innerHTML = `
-        <div class="flex justify-between text-sm"><span class="text-on-primary-container font-label text-xs uppercase">Tuition</span><span>$${result.tuition.toLocaleString()}</span></div>
+        <div class="flex justify-between text-sm"><span class="text-on-primary-container font-label text-xs uppercase">Tuition (${isOnline ? 'Online' : 'In-Person'})</span><span>$${result.tuition.toLocaleString()}</span></div>
         <div class="flex justify-between text-sm"><span class="text-on-primary-container font-label text-xs uppercase">Fees</span><span>$${result.fees.toLocaleString()}</span></div>
         ${result.housing > 0 ? `<div class="flex justify-between text-sm"><span class="text-on-primary-container font-label text-xs uppercase">Housing</span><span>$${result.housing.toLocaleString()}</span></div>` : ''}
+        ${isOnline ? `<div class="text-xs text-on-primary-container/60 italic mt-2">Online students are not charged housing fees.</div>` : ''}
       `;
     }
   }
 
+  modalitySelect.addEventListener('change', function() {
+    updateHousingState();
+    calculate();
+  });
   residencySelect.addEventListener('change', calculate);
   housingSelect.addEventListener('change', calculate);
   if (recalcBtn) recalcBtn.addEventListener('click', function() {
+    const isOnline = modalitySelect.value === 'Online';
+    if (!residencySelect.value || !modalitySelect.value || (!isOnline && !housingSelect.value)) {
+      showToast('Please fill in all required fields', 'error');
+      return;
+    }
     calculate();
     showToast('Tuition estimate updated', 'info');
   });
 
-  // Initial calculation
-  calculate();
+  // No initial calculation — starts at $0
+}
+
+/* ── Reset Tuition Calculator ─────────────────────────── */
+function resetTuitionCalculator() {
+  const residencySelect = document.getElementById('tuition-residency');
+  const modalitySelect  = document.getElementById('tuition-modality');
+  const housingSelect   = document.getElementById('tuition-housing');
+  const display         = document.getElementById('tuition-display');
+  const breakdown       = document.getElementById('tuition-breakdown');
+  if (residencySelect) residencySelect.selectedIndex = 0;
+  if (modalitySelect) modalitySelect.selectedIndex = 0;
+  if (housingSelect) { housingSelect.selectedIndex = 0; housingSelect.disabled = false; housingSelect.style.opacity = '1'; housingSelect.style.cursor = ''; }
+  if (display) display.innerHTML = `$0<span class="text-xl font-normal opacity-50 ml-2">/year</span>`;
+  if (breakdown) breakdown.innerHTML = '';
 }
 
 /* ── Academics Search/Filter ──────────────────────────── */
