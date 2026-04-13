@@ -15,6 +15,12 @@ const PAGE_TITLES = {
 };
 
 function navigate(page) {
+  // Reset tuition calculator when leaving admissions
+  const currentPage = location.hash.replace('#', '') || 'home';
+  if (currentPage === 'admissions' && page !== 'admissions' && typeof resetTuitionCalculator === 'function') {
+    resetTuitionCalculator();
+  }
+
   // Hide all pages
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 

@@ -254,6 +254,15 @@ function initTuitionCalculator() {
   function calculate() {
     const residencyMap = { 'In-State Resident': 'in_state', 'Out-of-State': 'out_of_state', 'International': 'international' };
     const housingMap   = { 'On-Campus Dormitory': 'on_campus', 'Off-Campus': 'off_campus', 'Living with Family': 'family' };
+
+    // If either dropdown is still on the placeholder, show $0
+    if (!residencySelect.value || !housingSelect.value) {
+      display.innerHTML = `$0<span class="text-xl font-normal opacity-50 ml-2">/year</span>`;
+      const breakdown = document.getElementById('tuition-breakdown');
+      if (breakdown) breakdown.innerHTML = '';
+      return;
+    }
+
     const r = residencyMap[residencySelect.value] || 'out_of_state';
     const h = housingMap[housingSelect.value] || 'on_campus';
     const result = DB.calculateTuition(r, h);
@@ -273,12 +282,27 @@ function initTuitionCalculator() {
   residencySelect.addEventListener('change', calculate);
   housingSelect.addEventListener('change', calculate);
   if (recalcBtn) recalcBtn.addEventListener('click', function() {
+    if (!residencySelect.value || !housingSelect.value) {
+      showToast('Please select both residency and housing preference', 'error');
+      return;
+    }
     calculate();
     showToast('Tuition estimate updated', 'info');
   });
 
-  // Initial calculation
-  calculate();
+  // No initial calculation — starts at $0
+}
+
+/* ── Reset Tuition Calculator ─────────────────────────── */
+function resetTuitionCalculator() {
+  const residencySelect = document.getElementById('tuition-residency');
+  const housingSelect   = document.getElementById('tuition-housing');
+  const display         = document.getElementById('tuition-display');
+  const breakdown       = document.getElementById('tuition-breakdown');
+  if (residencySelect) residencySelect.selectedIndex = 0;
+  if (housingSelect) housingSelect.selectedIndex = 0;
+  if (display) display.innerHTML = `$0<span class="text-xl font-normal opacity-50 ml-2">/year</span>`;
+  if (breakdown) breakdown.innerHTML = '';
 }
 
 /* ── Academics Search/Filter ──────────────────────────── */
