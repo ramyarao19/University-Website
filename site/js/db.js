@@ -17,10 +17,17 @@ const DB = (function () {
   const STORAGE_KEY = 'scholarly_db';
 
   // Static tuition/housing rates (not stored in Supabase — they're reference data)
+  // In-person rates
   const TUITION_RATES = {
     in_state:      { tuition: 28500, fees: 2800 },
     out_of_state:  { tuition: 42500, fees: 3200 },
     international: { tuition: 52000, fees: 4500 }
+  };
+  // Online rates — ~60% tuition, reduced fees, no campus-specific charges
+  const TUITION_RATES_ONLINE = {
+    in_state:      { tuition: 17100, fees: 1400 },
+    out_of_state:  { tuition: 25500, fees: 1600 },
+    international: { tuition: 31200, fees: 2200 }
   };
   const HOUSING_RATES = {
     on_campus:  12800,
@@ -280,14 +287,18 @@ const DB = (function () {
   /* ══════════════════════════════════════════════════════
      TUITION CALCULATOR (static rates — no DB call needed)
      ══════════════════════════════════════════════════════ */
-  function calculateTuition(residency, housing) {
-    const r = TUITION_RATES[residency] || TUITION_RATES['out_of_state'];
-    const h = HOUSING_RATES[housing] || 0;
+  function calculateTuition(residency, housing, modality) {
+    const isOnline = modality === 'online';
+    const rates = isOnline ? TUITION_RATES_ONLINE : TUITION_RATES;
+    const r = rates[residency] || rates['out_of_state'];
+    // Online students don't pay housing
+    const h = isOnline ? 0 : (HOUSING_RATES[housing] || 0);
     return {
-      tuition: r.tuition,
-      fees:    r.fees,
-      housing: h,
-      total:   r.tuition + r.fees + h
+      tuition:  r.tuition,
+      fees:     r.fees,
+      housing:  h,
+      modality: isOnline ? 'Online' : 'In-Person',
+      total:    r.tuition + r.fees + h
     };
   }
 
