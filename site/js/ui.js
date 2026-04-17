@@ -98,19 +98,19 @@ function closeModal() {
 }
 
 /* ── Notification Dropdown ────────────────────────────── */
-function toggleNotifications(btnEl) {
+async function toggleNotifications(btnEl) {
   const dropdown = btnEl.closest('.relative').querySelector('.notif-dropdown');
   if (!dropdown) return;
   const isOpen = dropdown.classList.contains('open');
   document.querySelectorAll('.notif-dropdown.open').forEach(d => d.classList.remove('open'));
   if (!isOpen) {
-    renderNotifications(dropdown);
+    await renderNotifications(dropdown);
     dropdown.classList.add('open');
   }
 }
 
-function renderNotifications(dropdown) {
-  const notifs = DB.getNotifications();
+async function renderNotifications(dropdown) {
+  const notifs = await DB.getNotifications();
   if (!notifs.length) {
     dropdown.innerHTML = `<div style="padding:2rem;text-align:center;color:#74777f;font-family:'Manrope',sans-serif">No notifications</div>`;
     return;
@@ -141,10 +141,11 @@ function handleNotifClick(id, el) {
   updateNotifBadges();
 }
 
-function markAllRead(btn) {
-  DB.getNotifications().forEach(n => DB.markNotifRead(n.id));
+async function markAllRead(btn) {
+  const notifs = await DB.getNotifications();
+  for (const n of notifs) await DB.markNotifRead(n.id);
   const dropdown = btn.closest('.notif-dropdown');
-  if (dropdown) renderNotifications(dropdown);
+  if (dropdown) await renderNotifications(dropdown);
   updateNotifBadges();
 }
 

@@ -365,8 +365,8 @@ function initAcademicsFilter() {
 }
 
 /* ── Settle Fees Modal ────────────────────────────────── */
-function settleFees() {
-  const fees = DB.getFees().filter(f => f.status !== 'paid');
+async function settleFees() {
+  const fees = (await DB.getFees()).filter(f => f.status !== 'paid');
   if (fees.length === 0) {
     showToast('All fees are already paid!', 'success');
     return;
@@ -392,9 +392,9 @@ function settleFees() {
   ]);
 }
 
-function processPayment() {
-  const fees = DB.getFees().filter(f => f.status !== 'paid');
-  fees.forEach(f => DB.payFee(f.id));
+async function processPayment() {
+  const fees = (await DB.getFees()).filter(f => f.status !== 'paid');
+  for (const f of fees) await DB.payFee(f.id);
   closeModal();
   showToast('All fees have been settled!', 'success');
 
