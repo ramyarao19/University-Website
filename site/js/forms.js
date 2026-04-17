@@ -79,12 +79,12 @@ function initContactForm() {
 }
 
 /* ── Internship Application Form ──────────────────────── */
-function initInternshipForm() {
+async function initInternshipForm() {
   const form = document.getElementById('internship-form');
   if (!form) return;
 
   // Load saved draft if any
-  const draft = DB.loadDraft('internship-app');
+  const draft = await DB.loadDraft('internship-app');
   if (draft) {
     Object.keys(draft).forEach(key => {
       if (key.startsWith('_')) return;
@@ -340,7 +340,7 @@ function initAcademicsFilter() {
   if (!searchInput) return;
 
   function filterCards() {
-    const query = searchInput.value.toLowerCase();
+    const query = searchInput.value.trim().toLowerCase();
     const level = levelSelect ? levelSelect.value : '';
     const area  = areaSelect ? areaSelect.value : '';
     const cards = document.querySelectorAll('.college-card');

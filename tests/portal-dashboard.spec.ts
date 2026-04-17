@@ -181,8 +181,10 @@ test.describe('Portal Dashboard', () => {
     test('should display student email', async ({ resetPage }) => {
       const page = new PortalPage(resetPage);
       await page.goto();
-      const portalText = await resetPage.locator('#page-portal').textContent();
-      expect(portalText).toContain('j.thorne@scholarly.edu');
+      // Email is rendered in the portal sidebar, not the main page area
+      await resetPage.waitForSelector('#portal-sidebar .student-email', { timeout: 5000 });
+      const emailText = await resetPage.locator('#portal-sidebar .student-email').textContent();
+      expect(emailText).toContain('j.thorne@scholarly.edu');
     });
   });
 });
