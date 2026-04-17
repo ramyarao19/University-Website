@@ -86,6 +86,8 @@ test.describe('Academics Filter', () => {
       await page.goto();
       const total = await page.getTotalCardCount();
       await page.searchPrograms('   ');
+      // Wait for filter logic to execute
+      await resetPage.waitForTimeout(500);
       // Whitespace search is effectively empty after .toLowerCase(), which includes everything
       const visible = await page.getVisibleCardCount();
       expect(visible).toBe(total);

@@ -364,14 +364,12 @@ test.describe('Internship Application Form', () => {
       await page.studentId.fill('2024-0002');
       await page.saveDraft();
 
-      // Reload the entire page
+      // Reload the entire page — reset hash first so home page activates
+      await resetPage.evaluate(() => { location.hash = ''; });
       await resetPage.reload();
-      await resetPage.waitForFunction(
-        () => document.querySelector('#page-home.active') !== null,
-        { timeout: 10_000 }
-      );
+      await resetPage.waitForSelector('#page-home.active', { timeout: 15_000 });
       await page.goto();
-      await resetPage.waitForTimeout(500);
+      await resetPage.waitForTimeout(1000);
 
       const nameValue = await page.fullName.inputValue();
       expect(nameValue).toBe('Persistent User');

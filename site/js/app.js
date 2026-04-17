@@ -66,6 +66,8 @@ async function refreshPortalData() {
   const student = await DB.getStudent();
   const nameEl = document.querySelector('#portal-sidebar .student-name');
   if (nameEl && student.name) nameEl.textContent = student.name;
+  const emailEl = document.querySelector('#portal-sidebar .student-email');
+  if (emailEl && student.email) emailEl.textContent = student.email;
 
   // Update application count in sidebar if any
   const apps = await DB.getApplications();
